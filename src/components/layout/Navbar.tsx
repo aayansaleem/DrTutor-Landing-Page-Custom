@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { Button, Container } from '../ui';
 import { navLinks } from '@/data/navigation';
-import logoImg from '@/assets/logo/logo.avif';
+import logoImg from '@/assets/logo/logo.svg';
 
 function scrollToHash(hash: string) {
   const id = hash.replace('#', '');

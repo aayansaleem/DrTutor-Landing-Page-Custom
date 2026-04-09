@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Container } from '../ui';
 import { footerLinks } from '@/data/navigation';
 import { Instagram, Facebook, Linkedin } from 'lucide-react';
-import logoImg from '@/assets/logo/logo.avif';
+import logoImg from '@/assets/logo/logo.svg';
 
 export const Footer: React.FC = () => {
   return (
