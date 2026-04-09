@@ -1,0 +1,170 @@
+# Dr Tutor — Full Reference
+
+> Dr Tutor is a UK-based online science tutoring service for students aged 7–18 (KS2 through A-Levels). All tutors are PGCE-qualified science specialists. The service offers personalised one-to-one online lessons, real-time progress tracking, comprehensive free study resources, and transparent monthly pricing with no hidden fees. Parents can book a free assessment to get started.
+
+## Key Facts
+
+- Website: https://www.drtutor.uk
+- Location: United Kingdom (online, nationwide)
+- Subjects: Science (Biology, Chemistry, Physics), with additional support in English and Maths
+- Age Range: KS2 (ages 7–11), KS3 (ages 11–14), GCSE (ages 14–16), A-Level (ages 16–18), 11+ Preparation
+- Tutors: PGCE-qualified science specialists (some with QTS)
+- Delivery: Online one-to-one lessons via Zoom / Google Meet
+- Free Assessment: https://platform.drtutor.uk/register
+- Contact: https://www.drtutor.uk/contact
+
+## Pages
+
+- [Home](https://www.drtutor.uk/)
+- [Pricing](https://www.drtutor.uk/pricing)
+- [Resources](https://www.drtutor.uk/resources)
+- [Contact](https://www.drtutor.uk/contact)
+- [Terms & Conditions](https://www.drtutor.uk/terms)
+- [Book Free Assessment](https://platform.drtutor.uk/register)
+- [Careers](https://platform.drtutor.uk/careers)
+
+## What Makes Dr Tutor Different
+
+- Every tutor holds a PGCE qualification in science education
+- Personalised lesson plans tailored to each student's learning style and curriculum goals
+- "Lessons That Stick" methodology — structured teaching cycles designed for long-term retention
+- Real-time progress tracking dashboards for parents
+- Comprehensive online resource library included at no extra cost
+- Flexible monthly packages with no lock-in contracts
+- Diagnostic-led approach: every student starts with a free assessment to identify gaps
+
+## Subjects & Key Stages Covered
+
+- **KS2 Science (ages 7–11):** Building strong foundations in scientific enquiry.
+- **KS3 Science (ages 11–14):** Bridging primary to secondary curriculum.
+- **GCSE Science (ages 14–16):** Biology, Chemistry, Physics — all exam boards.
+- **A-Level Science (ages 16–18):** In-depth specialist tutoring for Biology, Chemistry, Physics.
+- **11+ Preparation:** Science reasoning and exam technique.
+
+## Pricing
+
+All prices are per hour in GBP. Three tutor tiers are available across every key stage: Standard (qualified UK teacher), Experienced (exam-board expertise, most popular), and Expert (senior examiner insights).
+
+| Key Stage        | Standard | Experienced | Expert |
+| ---------------- | -------- | ----------- | ------ |
+| Primary (KS2)    | £20      | £25         | £30    |
+| Secondary (KS3)  | £30      | £35         | £40    |
+| GCSE (KS4)       | £40      | £45         | £50    |
+| A-Level (KS5)    | £50      | £55         | £65    |
+| Specialist       | —        | —           | £70    |
+
+### Tier Details
+
+**Standard** — Solid foundations with a qualified UK teacher.
+- Qualified UK Teacher (PGCE/QTS)
+- Structured Lesson Plans
+- Homework Support
+- Online Sessions (Zoom / Google Meet)
+
+**Experienced** *(most popular)* — Enhanced learning with exam-board expertise.
+- Everything in Standard
+- Exam-Board Expertise
+- Personalised Study Plan
+- Priority Booking
+
+**Expert** — Premium support from senior examiners.
+- Everything in Experienced
+- Senior Examiner Insights
+- Intensive Revision Programmes
+- Assessment & Progress Report Included
+
+**Specialist** — Expert teachers and examiners for specialist preparation.
+- Senior Examiner & Specialist Teacher
+- Exam-Board Expertise
+- Intensive Revision Programmes
+- Personalised Study Plan
+- Assessment & Progress Report Included
+- Priority Booking
+
+### Monthly Discounts
+
+- **4 sessions/month:** 10% discount
+- **8 sessions/month:** 15% discount
+
+## Teaching Methodology — "Lessons That Stick"
+
+Dr Tutor lessons follow Doug Lemov's **Teach Like a Champion** framework, adapted for online one-to-one sessions. Core techniques include:
+
+- **Warm Call** — easing students into active participation
+- **Check for Understanding** — verifying genuine comprehension before moving on
+- **No Opt Out** — every student is supported to answer, never allowed to disengage
+- **Right is Right** — holding the bar for full, precise answers
+- **Wait Time** — giving students space to think before responding
+
+### Teaching Cycle (I Do → We Do → You Do)
+
+1. **I Do — Model.** The teacher introduces and clearly demonstrates the new concept, breaking it down step by step. This stage sets a strong foundation, helping students see exactly how to approach the task with confidence.
+2. **We Do — Guided Practice.** Teacher and students work through the concept together, applying what was modelled. With support and feedback, learners build their understanding while developing key skills in a collaborative setting.
+3. **You Do — Independent Practice.** Students take the lead, practising independently. This stage helps build confidence and shows what they've mastered or where they need extra support.
+
+### Lesson Structure
+
+- **'Do Now' Starter Task** — Each lesson kicks off with a quick task that brings past learning back to mind, helping students feel ready and confident to dive into something new.
+- **Intentional Lesson Planning** — Lessons aren't just delivered; they're carefully planned to help students internalise what they learn and build lasting mastery.
+- **End-of-Lesson Tasks** — Short, reflective activities at the end of each lesson help summarise key takeaways and deepen understanding through critical thinking.
+
+## Core Features
+
+- **Learn Like a Champion** — Dr Tutor follows Doug Lemov's *Teach Like a Champion* framework, an evidence-based approach that helps deliver engaging and effective online lessons. These proven techniques ensure every session is impactful and memorable.
+- **Online Access** — Lessons are fully online and easy to access from anywhere. Whether it's after school or on weekends, parents choose the time that works.
+- **Progress Tracking** — Personalised plans and regular feedback mean parents always know their child's strengths and where they're improving.
+
+## Tutors
+
+- **Dr Falak** — KS3–4 Science and KS5 Chemistry & Biology. 7 years of experience. Rated 5.0 (48 reviews).
+- **Mr Ahmed** — KS3–5 Science & Maths. 25 years of experience. Rated 5.0 (32 reviews).
+- **Mr El-Hendi** — KS3–4 Science and KS5 Chemistry. 16 years of experience. Rated 4.0 (24 reviews).
+- **Ms Ekrami** — KS3–4 English. 15 years of experience. Rated 4.5 (19 reviews).
+
+## Testimonials
+
+> "I wanted to build a strong science foundation for my daughter before she moved to secondary school. Her tutor, Miss Khan, has made learning so much fun."
+> — Fatima K., parent of a KS2 student
+
+> "A fantastic, forward-thinking platform. The quality of the tutors is excellent, and my child is finally excited about learning."
+> — Faiz, parent of a GCSE student
+
+> "My son went from dreading science homework to being genuinely curious about the subject."
+> — Stephanie Jackson
+
+> "We needed help with 11+ prep, and Dr Tutor delivered. The tutor they matched us with was patient and knew the curriculum inside and out."
+> — Samantha Vier, parent of an 11+ student
+
+> "His confidence and his grades in science have soared since starting with Dr Tutor. The personalised lessons made all the difference."
+> — Anna McDaniels, parent of a GCSE student
+
+> "Dr Tutor has been amazing for our family. Both my children have improved significantly in maths and English."
+> — David Thompson, parent of KS3 students
+
+## Frequently Asked Questions
+
+### What subjects and ages does Dr Tutor cover?
+Dr Tutor provides English, Science & Maths tutoring from KS2 to A-Levels. We also offer tutoring for every stage of learning, including KS2, KS3, GCSE, A-Level, and 11+ Exam Prep, covering all subjects.
+
+### Why should I get a private tutor?
+Our expert tutors are here to boost your child's academic success. Tutoring helps students to build confidence, better retain information, and improve their academic results. We focus on more than just marks; our goal is to foster confidence, curiosity, and a love for science that lasts a lifetime through expert instruction and real-time progress updates.
+
+### How easy is it to learn online?
+Our lessons are designed to be fully online and easy to access from anywhere. The process to get started is quick and easy. Our tutors are patient and understanding, helping you to excel without feeling pressured.
+
+### What's included in the Dr Tutor membership?
+When you learn with Dr Tutor, you receive: personalised online science lessons designed to boost confidence and improve results; instruction from PGCE-qualified tutors who follow the effective "Teach Like a Champion" framework; lessons tailored to your child's needs and aligned with the UK curriculum; personalised learning plans with regular feedback and progress updates; and access to our extensive library of study resources to help with homework.
+
+### Can I change my tutor?
+Our platform is committed to helping students succeed and finding the "Perfect Match". If you feel a different tutor would be a better fit for your child, our team will work with you to find the right match.
+
+## Terms & Policies (Summary)
+
+- **Services.** Dr Tutor is a tutoring platform for students from KS2 to A-Level, focused on personalised online science lessons with coverage across KS2, KS3, GCSE, A-Level, and 11+ exam preparation.
+- **Tutor Information.** Tutors are expert practitioners, many PGCE-qualified.
+- **Booking & Scheduling.** Lessons are fully online; sessions are available after school and at weekends.
+- **Payments.** Prices vary by tutor tier (£20–£70/hour depending on key stage and tier). Payments are processed online.
+- **Personalised Approach.** Every student receives a tailored learning plan with regular feedback.
+- **Limitation of Liability.** Dr Tutor does not guarantee specific academic outcomes; results depend on student engagement.
+- **Changes.** Terms may be updated at any time; users should review the Terms page periodically.
+- Full terms: https://www.drtutor.uk/terms

@@ -15,10 +15,14 @@ export const footerLinks = {
     { label: 'Find a Tutor', href: '/#tutors' },
     { label: 'How it works', href: '/#how-it-works' },
     { label: 'Testimonials', href: '/#testimonials' },
+    { label: 'Pricing', href: '/pricing' },
+    { label: 'Resources', href: '/resources' },
   ],
   support: [
     { label: "FAQ's", href: '/#faq' },
     { label: 'Contact', href: '/contact' },
+    { label: 'Terms & Conditions', href: '/terms' },
     { label: 'Become a Tutor', href: 'https://platform.drtutor.uk/careers' },
+    { label: 'Book Free Assessment', href: 'https://platform.drtutor.uk/register' },
   ],
 };

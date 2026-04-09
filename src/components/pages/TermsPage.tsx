@@ -1,6 +1,15 @@
 import React from 'react';
-import { Container } from '../ui';
+import { Container, SEO } from '../ui';
 import { CTASection } from '../sections';
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.drtutor.uk/' },
+    { '@type': 'ListItem', position: 2, name: 'Terms & Conditions', item: 'https://www.drtutor.uk/terms' },
+  ],
+};
 
 const sections = [
   {
@@ -79,6 +88,12 @@ const sections = [
 export const TermsPage: React.FC = () => {
   return (
     <>
+      <SEO
+        title="Terms & Conditions | Dr Tutor"
+        description="Read Dr Tutor's terms and conditions, privacy policy, cancellation policy and service agreement for our online science tutoring service."
+        path="/terms"
+        schema={breadcrumbSchema}
+      />
       <section
         className="pt-28 sm:pt-32 md:pt-36 pb-16 md:pb-20 lg:pb-24"
         style={{ backgroundColor: 'var(--bg-page)' }}

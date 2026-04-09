@@ -72,6 +72,7 @@ export const Navbar: React.FC = () => {
   return (
     <nav
       ref={navRef}
+      aria-label="Primary"
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled ? 'bg-white shadow-nav py-0' : 'bg-transparent py-2'
       }`}
@@ -129,6 +130,9 @@ export const Navbar: React.FC = () => {
 
         {/* Mobile Toggle */}
         <button
+          type="button"
+          aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={isMobileMenuOpen}
           className="lg:hidden text-brand-navy bg-white p-2 rounded-full shadow-md"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >

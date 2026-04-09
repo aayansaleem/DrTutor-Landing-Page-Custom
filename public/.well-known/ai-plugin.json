@@ -1,0 +1,12 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "Dr Tutor",
+  "name_for_model": "drtutor",
+  "description_for_human": "UK-based personalised online science tutoring for KS2 to A-Level students, delivered by PGCE-qualified specialists.",
+  "description_for_model": "Dr Tutor is a UK online science tutoring service. PGCE-qualified tutors deliver personalised one-to-one lessons for KS2, KS3, GCSE, and A-Level students in Biology, Chemistry, and Physics. The service includes progress tracking, free study resources, and transparent monthly pricing. Parents can book a free assessment at https://platform.drtutor.uk/register",
+  "auth": { "type": "none" },
+  "api": { "type": "openapi", "url": "" },
+  "logo_url": "https://www.drtutor.uk/logo.svg",
+  "contact_email": "",
+  "legal_info_url": "https://www.drtutor.uk/terms"
+}

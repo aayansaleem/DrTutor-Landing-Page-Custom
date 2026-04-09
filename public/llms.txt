@@ -1,0 +1,43 @@
+# Dr Tutor
+
+> Dr Tutor is a UK-based online science tutoring service for students aged 7–18 (KS2 through A-Levels). All tutors are PGCE-qualified science specialists. The service offers personalised one-to-one online lessons, real-time progress tracking, comprehensive free study resources, and transparent monthly pricing with no hidden fees. Parents can book a free assessment to get started.
+
+## Key Facts
+
+- Website: https://www.drtutor.uk
+- Location: United Kingdom (online, nationwide)
+- Subjects: Science (Biology, Chemistry, Physics), with additional support in English and Maths
+- Age Range: KS2 (ages 7–11), KS3 (ages 11–14), GCSE (ages 14–16), A-Level (ages 16–18), 11+ Preparation
+- Tutors: All PGCE-qualified science specialists
+- Delivery: Online one-to-one lessons via Zoom / Google Meet
+- Teaching Framework: Doug Lemov's "Teach Like a Champion", delivered through a structured I Do → We Do → You Do cycle
+- Free Assessment: https://platform.drtutor.uk/register
+- Contact: https://www.drtutor.uk/contact
+
+## Pages
+
+- [Home](https://www.drtutor.uk/): Landing page with overview of services, teaching methodology, tutor profiles, testimonials, and FAQs
+- [Pricing](https://www.drtutor.uk/pricing): Transparent monthly packages for all key stages, add-on sessions, and trust guarantees
+- [Resources](https://www.drtutor.uk/resources): Free downloadable science revision guides, topic summaries, and study materials for KS2 to A-Level
+- [Contact](https://www.drtutor.uk/contact): Get in touch via form, email, or WhatsApp; book a free assessment
+- [Terms & Conditions](https://www.drtutor.uk/terms): Service agreement, privacy policy, and cancellation terms
+- [Book Free Assessment](https://platform.drtutor.uk/register): Registration page to book a free initial assessment
+- [Careers](https://platform.drtutor.uk/careers): Join the Dr Tutor team as a tutor
+
+## What Makes Dr Tutor Different
+
+- Every tutor holds a PGCE qualification in science education
+- Personalised lesson plans tailored to each student's learning style and curriculum goals
+- "Lessons That Stick" methodology — structured teaching cycles designed for long-term retention
+- Real-time progress tracking dashboards for parents
+- Comprehensive online resource library included at no extra cost
+- Flexible monthly packages with no lock-in contracts
+- Diagnostic-led approach: every student starts with a free assessment to identify gaps
+
+## Subjects & Key Stages Covered
+
+- KS2 Science (ages 7–11): Building strong foundations in scientific enquiry
+- KS3 Science (ages 11–14): Bridging primary to secondary curriculum
+- GCSE Science (ages 14–16): Biology, Chemistry, Physics — all exam boards
+- A-Level Science (ages 16–18): In-depth specialist tutoring for Biology, Chemistry, Physics
+- 11+ Preparation: Science reasoning and exam technique

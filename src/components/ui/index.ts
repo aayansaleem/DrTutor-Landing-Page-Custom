@@ -7,3 +7,4 @@ export * from './SectionHeading';
 export * from './Container';
 export * from './WhatsAppButton';
 export * from './CookieConsent';
+export * from './SEO';
