@@ -4,6 +4,14 @@ Running record of meaningful changes to the marketing site (`drtutor.uk`). Newes
 
 ---
 
+## 2026-05-21 — Documentation pass
+
+### Added
+- **`CLAUDE.md`** at repo root — 88-line operating contract for AI assistants working in this codebase. Covers project identity, the two-app split with the Platform, stack at a glance, design philosophy (restraint, big radii, brand token discipline, custom-over-generic), performance non-negotiables, code patterns, authorization model, and the visible-change checklist.
+- **`docs/ARCHITECTURE.md`** — system reference. Where things live (this repo vs. `../DrTutor Platform/`), how the two-app split maps to external `register` / `careers` URLs, full stack table, route table, `src/` folder map, design-system source-of-truth pointer, SEO + analytics flow, build/deploy commands, and cross-repo notes for when Platform paths move.
+
+---
+
 ## 2026-05-21 — Featured video, footer socials, GA4, favicon
 
 ### Added
