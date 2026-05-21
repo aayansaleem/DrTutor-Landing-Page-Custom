@@ -139,3 +139,16 @@ If you ever need to verify something on the Platform side (the `/register` or `/
 - Platform deploy is its own Vercel project. Do not commit Platform changes from this repo.
 
 When the Platform UI moves (route renamed, page split), update `src/data/navigation.ts` here — it is the only place where those external URLs are hard-coded… plus six call sites that pass them directly (`Navbar.tsx`, `HeroSection.tsx`, `CTASection.tsx`, `PricingCardsSection.tsx`, `ResourcesHeroSection.tsx`). Worth consolidating into `navigation.ts` constants if a rename ever happens.
+
+---
+
+## Outreach subdomain — `outreach.drtutor.uk`
+
+The outreach system (`docs/outreach/`) sends permissioned emails from a dedicated subdomain to protect main-domain reputation. Setup:
+
+- **Subdomain**: `outreach.drtutor.uk` — separate DNS records from `www.drtutor.uk`. Hosted independently of the website (it is a sending identity, not a web property).
+- **DNS records**: MX, SPF, DKIM, DMARC — full setup in `docs/outreach/TOOLING.md` § "Outreach subdomain".
+- **Warm-up**: ~14 days via Instantly before first real send. Don't bypass.
+- **Why not `drtutor.uk` direct**: a single spam complaint or low-engagement signal on the main domain would damage booking confirmations + password resets. Subdomain isolation is the standard pattern.
+
+The Platform repo (`../DrTutor Platform/`) doesn't need to know about `outreach.drtutor.uk` — it's a sending-only identity, not a route.

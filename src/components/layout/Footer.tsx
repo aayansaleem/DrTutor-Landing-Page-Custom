@@ -138,12 +138,20 @@ export const Footer: React.FC = () => {
           className="py-5 sm:py-6 flex flex-col md:flex-row items-center justify-between gap-3 sm:gap-4"
           style={{ borderTop: '1px solid rgba(15,165,165,0.12)' }}
         >
-          <p
-            className="text-[11px] sm:text-xs font-body"
-            style={{ color: 'var(--brand-teal)' }}
-          >
-            &copy; 2025 &ndash; Dr Tutors
-          </p>
+          <div className="flex flex-col gap-1 text-center md:text-left">
+            <p
+              className="text-[11px] sm:text-xs font-body"
+              style={{ color: 'var(--brand-teal)' }}
+            >
+              &copy; 2026 DRTUTOR LTD &middot; Registered in England No. 16076105
+            </p>
+            <p
+              className="text-[10px] sm:text-[11px] font-body"
+              style={{ color: 'var(--brand-teal)', opacity: 0.75 }}
+            >
+              21 Fulford Grove, Watford WD19 7QQ, United Kingdom
+            </p>
+          </div>
           <div className="flex flex-wrap items-center justify-center md:justify-end gap-4 sm:gap-6">
             <Link
               to="/terms"

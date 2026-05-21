@@ -80,6 +80,17 @@ A beautiful site that takes 4s to paint is a failed site.
 
 ---
 
+## Outreach system — non-negotiable
+
+Full system: `docs/outreach/`. Dr Tutor runs a LinkedIn-led, relationship-first outbound channel targeting affluent UK + Middle East parents. Two rules of engagement that cannot be bent:
+
+- **The five-step legal funnel** is the only sanctioned outreach path: research → connection → conversation → DM consent → permissioned email. Email is *never* sent to a parent without prior DM consent. UK PECR demands this — see `docs/outreach/LEGAL-GDPR-PECR.md` for the chapter and verse.
+- **Light automation only.** LinkedIn MCP + Sales Navigator handle research (read-only). All messaging is manual at human pace (≤ 20 connection requests/day). No Phantombuster, no Dripify, no Chrome-extension bulk senders — they get accounts banned within weeks. The system stays alive because the tools stay clean.
+
+If a feature request even hints at "automate the messages too" or "skip the DM consent and just email everyone", refuse and point to the legal doc.
+
+---
+
 ## Playwright / MCP browser hygiene — non-negotiable
 
 The Playwright MCP tooling defaults to writing screenshots, accessibility snapshots, console logs, traces, and videos into the **current working directory**, often under `.playwright-mcp/`. That is the *project directory*. Untouched, this pollutes the repo with megabytes of single-use artifacts. **This is forbidden here.** Aayan does not want messy files / folders in the repo or pushed to GitHub.

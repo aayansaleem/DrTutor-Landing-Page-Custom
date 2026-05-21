@@ -18,12 +18,25 @@ const organizationSchema = {
   '@type': 'EducationalOrganization',
   name: 'Dr Tutor',
   alternateName: 'DrTutor',
+  legalName: 'DRTUTOR LTD',
   url: 'https://www.drtutor.uk',
   logo: 'https://www.drtutor.uk/logo.svg',
   image: 'https://www.drtutor.uk/og-image.png',
   description:
     'Dr Tutor provides personalised online science tutoring for UK students from KS2 to A-Levels, delivered by PGCE-qualified specialists. We offer structured lesson plans, real-time progress tracking, comprehensive study resources, and flexible monthly packages with no hidden fees.',
-  foundingDate: '2024',
+  foundingDate: '2024-11-12',
+  identifier: {
+    '@type': 'PropertyValue',
+    propertyID: 'UK Companies House',
+    value: '16076105',
+  },
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '21 Fulford Grove',
+    addressLocality: 'Watford',
+    postalCode: 'WD19 7QQ',
+    addressCountry: 'GB',
+  },
   areaServed: {
     '@type': 'Country',
     name: 'United Kingdom',
@@ -55,7 +68,12 @@ const organizationSchema = {
     url: 'https://www.drtutor.uk/contact',
     availableLanguage: 'English',
   },
-  sameAs: [] as string[],
+  sameAs: [
+    'https://www.instagram.com/drtut0r/',
+    'https://www.facebook.com/drtut0r/',
+    'https://www.linkedin.com/company/dr-tut0r/',
+    'https://platform.drtutor.uk/',
+  ],
 };
 
 const websiteSchema = {

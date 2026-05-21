@@ -4,6 +4,24 @@ Running record of meaningful changes to the marketing site (`drtutor.uk`). Newes
 
 ---
 
+## 2026-05-21 — Outreach system blueprint + entity unification
+
+### Added
+- **`docs/outreach/`** — full LinkedIn-led outbound system blueprint. Six files, ~1,500 lines total:
+  - `README.md` — five-step legal funnel diagram (research → connection → conversation → DM consent → permissioned email), doc map, KPI summary, tool stack at-a-glance.
+  - `STRATEGY.md` — two-ICP definition (UK affluent professional parents + Middle East families targeting UK education), audience filters, premium positioning, scale model (~£72k/year at saturation from 70 min/day), how outreach feeds the SEO + GBP + referral channels.
+  - `LEGAL-GDPR-PECR.md` — UK GDPR + PECR + LinkedIn ToS chapter-and-verse. Why the DM consent bridge is the only PECR-compliant path to B2C cold email in the UK. ME jurisdictional notes. LIA template ready to sign.
+  - `30-DAY-PILOT.md` — daily plan + KPI targets (450 connection requests / 25%+ acceptance / 5+ trials / 2+ signed). Five-path decision tree at Day 30 (scale / tune / iterate / pivot / pause).
+  - `MESSAGE-TEMPLATES.md` — connection notes, DMs, consent ask, permissioned email. UK + ME variants. Legal footer block. Anti-patterns ("never lead with pitch").
+  - `TOOLING.md` — LinkedIn MCP + Sales Navigator (£60) + Hunter.io (free→£40) + HubSpot (free) + Instantly (£30) + `outreach.drtutor.uk` DNS spec (SPF/DKIM/DMARC). Total ~£130/mo at pilot scale.
+  - `DAILY-CADENCE.md` — the 75-min daily routine, LinkedIn rate limits, what to do when LinkedIn flags activity, Friday review template.
+- **`CLAUDE.md`** — new **Outreach system — non-negotiable** section. Two hard rules: the five-step legal funnel is the only sanctioned path, and only light automation (research only) is permitted.
+- Pointers added in `docs/ARCHITECTURE.md` (outreach subdomain DNS notes), `docs/SEO.md` (how outreach feeds SEO), `docs/SEO-90-DAY-PLAN.md` (parallel-workstream alignment), `docs/TASKS-SCHEDULER.md` (new 🤝 marker + Day 2 task to read the pilot doc).
+- **`src/components/pages/HomePage.tsx`** — `organizationSchema` upgraded for entity unification: `legalName: 'DRTUTOR LTD'`, `identifier` (UK Companies House № 16076105), `address` (21 Fulford Grove, Watford WD19 7QQ, GB), refined `foundingDate` (2024-11-12), `sameAs` populated with the 3 social URLs + Platform URL. Google Knowledge Graph and LLM crawlers now read a complete entity.
+- **`src/components/layout/Footer.tsx`** — legal footer line added: `© 2026 DRTUTOR LTD · Registered in England No. 16076105 · 21 Fulford Grove, Watford WD19 7QQ`. UK Ltd company display requirement + brand entity disambiguation in SERPs.
+
+---
+
 ## 2026-05-21 — SEO playbook + 90-day boost plan + Playwright hygiene
 
 ### Added

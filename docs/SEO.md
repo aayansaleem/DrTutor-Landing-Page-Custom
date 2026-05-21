@@ -228,6 +228,19 @@ The two repos are sibling marketing + product. SEO should treat them as one bran
 
 ---
 
+## How outreach feeds SEO
+
+The outreach system (`docs/outreach/`) is not SEO — but it is a complement, and the same fundamentals carry through:
+
+- **Brand-search lift.** Every LinkedIn connection request is an impression. Even non-converters search "Dr Tutor" later. Brand-search volume is a positive ranking signal.
+- **Founder-led content.** Aayan posting on LinkedIn 1× / week, engaging with education content, builds the kind of mentions LLMs cite when answering "best UK online tutor". That feeds the LLM-citation gap surfaced in `SEO-90-DAY-PLAN.md`.
+- **Permissioned-email recipients who don't convert immediately** often become brand mentions later — they recommend Dr Tutor to friends, post about it, link from blog comments.
+- **ME signal**: ME-segment outreach drives a different keyword cluster ("UK PGCE tutor for Dubai", "British curriculum online tutor UAE") that should eventually have its own landing pages.
+
+Outreach + SEO + GBP reviews compound. Run them in parallel.
+
+---
+
 ## Sources of truth (link out for the latest)
 
 - **Search Central** — https://developers.google.com/search

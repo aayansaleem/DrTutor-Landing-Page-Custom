@@ -191,6 +191,20 @@ This sprint closes the structural gap with MyTutor / Tutorful / Spires.
 
 ---
 
+## Parallel workstream — outreach pilot
+
+The 30-day outreach pilot (`docs/outreach/30-DAY-PILOT.md`) runs **in parallel** to this SEO plan, not sequentially. They feed each other:
+
+- Outreach pilot Week 1 = SEO Sprint 1 (foundation lock-in).
+- Outreach pilot Week 3 (email layer comes online) aligns with SEO Sprint 2 (content depth + directory blitz).
+- Outreach pilot Day 30 review aligns with SEO Sprint 2/3 boundary.
+- If outreach pilot succeeds (≥ 2 signed students), Sprint 4 ("authority + outreach") expands to absorb more LinkedIn-driven brand mentions.
+- If outreach pilot fails the conversion bar, the SEO plan absorbs the freed-up time — more content depth, more directory work.
+
+Both pipelines target the same end state: more signed students. The split is *channel*, not *goal*.
+
+---
+
 ## Closing — why this works
 
 Two truths the giants live by, which this plan respects:
