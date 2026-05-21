@@ -172,3 +172,67 @@ h1, h2, h3, h4, h5, h6 {
 .group:hover .orbit-icon {
   transform: translate(var(--hover-x), var(--hover-y)) !important;
 }
+
+/* Featured video — conic gradient rotation */
+@property --video-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+@keyframes video-conic-spin {
+  to { --video-angle: 360deg; }
+}
+.video-conic-border {
+  --video-angle: 0deg;
+  background:
+    conic-gradient(
+      from var(--video-angle),
+      rgba(15, 165, 165, 0.0) 0deg,
+      rgba(15, 165, 165, 0.95) 70deg,
+      rgba(245, 166, 35, 0.95) 180deg,
+      rgba(15, 165, 165, 0.95) 290deg,
+      rgba(15, 165, 165, 0.0) 360deg
+    );
+  animation: video-conic-spin 14s linear infinite;
+  will-change: --video-angle;
+}
+
+/* Featured video — pulsing play-button ripples */
+@keyframes video-ripple {
+  0%   { transform: scale(0.85); opacity: 0.55; }
+  80%  { transform: scale(1.7);  opacity: 0;    }
+  100% { transform: scale(1.7);  opacity: 0;    }
+}
+.video-ripple {
+  animation: video-ripple 2.4s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+.video-ripple-delayed {
+  animation: video-ripple 2.4s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+  animation-delay: 1.2s;
+}
+
+/* Featured video — diagonal shine sweep on hover */
+@keyframes video-shine {
+  0%   { transform: translateX(-120%) skewX(-18deg); }
+  100% { transform: translateX(240%)  skewX(-18deg); }
+}
+.video-shine-wrapper:hover .video-shine,
+.video-shine-wrapper:focus-visible .video-shine {
+  animation: video-shine 1.2s ease-out forwards;
+}
+
+/* Featured video — lightbox scale-in */
+@keyframes video-lightbox-in {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1);    }
+}
+@keyframes video-lightbox-backdrop {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.video-lightbox-modal {
+  animation: video-lightbox-in 0.32s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.video-lightbox-backdrop {
+  animation: video-lightbox-backdrop 0.24s ease-out both;
+}

@@ -1,4 +1,5 @@
 export * from './HeroSection';
+export * from './FeaturedVideoSection';
 export * from './StagesSection';
 export * from './AboutSection';
 export * from './FeaturesSection';

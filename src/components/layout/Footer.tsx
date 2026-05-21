@@ -38,28 +38,34 @@ export const Footer: React.FC = () => {
             <div className="flex items-center gap-3">
               {/* Instagram */}
               <a
-                href="#"
+                href="https://www.instagram.com/drtut0r/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center transition-transform duration-200 hover:scale-110"
                 style={{ backgroundColor: '#E1306C' }}
-                aria-label="Instagram"
+                aria-label="Dr Tutor on Instagram"
               >
                 <Instagram size={18} color="#fff" />
               </a>
               {/* Facebook */}
               <a
-                href="#"
+                href="https://www.facebook.com/drtut0r/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center transition-transform duration-200 hover:scale-110"
                 style={{ backgroundColor: '#1877F2' }}
-                aria-label="Facebook"
+                aria-label="Dr Tutor on Facebook"
               >
                 <Facebook size={18} color="#fff" />
               </a>
               {/* LinkedIn */}
               <a
-                href="#"
+                href="https://www.linkedin.com/company/dr-tut0r/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center transition-transform duration-200 hover:scale-110"
                 style={{ backgroundColor: '#0A66C2' }}
-                aria-label="LinkedIn"
+                aria-label="Dr Tutor on LinkedIn"
               >
                 <Linkedin size={18} color="#fff" />
               </a>

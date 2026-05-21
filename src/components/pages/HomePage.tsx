@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   HeroSection,
+  FeaturedVideoSection,
   StagesSection,
   AboutSection,
   FeaturesSection,
@@ -104,6 +105,7 @@ export const HomePage: React.FC = () => {
         schema={[organizationSchema, websiteSchema, faqSchema, breadcrumbSchema]}
       />
       <HeroSection />
+      <FeaturedVideoSection />
       <StagesSection />
       <AboutSection />
       <FeaturesSection />
