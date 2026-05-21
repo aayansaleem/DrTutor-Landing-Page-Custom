@@ -6,3 +6,13 @@ coverage/
 *.log
 .env*
 !.env.example
+
+# Playwright / MCP browser artifacts — must never be committed
+.playwright-mcp/
+playwright-report/
+test-results/
+page-*.yml
+console-*.log
+*.png.tmp
+trace.zip
+videos/

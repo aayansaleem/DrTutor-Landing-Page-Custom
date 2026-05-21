@@ -80,6 +80,40 @@ A beautiful site that takes 4s to paint is a failed site.
 
 ---
 
+## Playwright / MCP browser hygiene — non-negotiable
+
+The Playwright MCP tooling defaults to writing screenshots, accessibility snapshots, console logs, traces, and videos into the **current working directory**, often under `.playwright-mcp/`. That is the *project directory*. Untouched, this pollutes the repo with megabytes of single-use artifacts. **This is forbidden here.** Aayan does not want messy files / folders in the repo or pushed to GitHub.
+
+Hard rules:
+
+1. **Never let Playwright write into the project tree.** Every `browser_take_screenshot`, `browser_snapshot`, and any tool that takes a `filename` parameter **must** pass an absolute path under the system temp directory:
+   - Windows: `$env:TEMP\dt-pw\<descriptive-name>.png` (e.g. `C:\Users\aayan\AppData\Local\Temp\dt-pw\hero-desktop.png`).
+   - POSIX: `/tmp/dt-pw/<name>.png`.
+   - Make the `dt-pw` subfolder if it doesn't exist; one folder for the whole session is fine.
+2. **Delete artifacts as soon as you're done with them.** Within the same conversation, once you've read a screenshot or snapshot and acted on it, remove it. Don't accumulate across turns.
+3. **Never commit Playwright output.** `.gitignore` already blocks `.playwright-mcp/`, `playwright-report/`, `test-results/`, `page-*.yml`, `console-*.log`, `trace.zip`, `videos/`. Don't bypass these. If a tool drops a file outside those patterns, delete it manually before committing anything.
+4. **When delegating to a subagent that uses Playwright, repeat these rules in the prompt.** Subagents inherit the cwd and will default to writing into the repo unless you tell them otherwise.
+5. **Audit before any push.** Before `git add`, run `git status` and confirm no `.playwright-mcp/`, no stray `*.png`, no `page-*.yml`, no `console-*.log` are about to be committed.
+
+If the tool's API doesn't let you redirect the output path (some Playwright MCP variants ignore relative paths and force `.playwright-mcp/`), the recovery pattern is: do the screenshot → read it → immediately `rm -rf .playwright-mcp/`. Don't ever leave it there for a second pass.
+
+---
+
+## SEO — non-negotiable
+
+Full playbook: `docs/SEO.md`. The rules of engagement here:
+
+- **One brand, two subdomains.** This repo is `www.drtutor.uk` (marketing). The Platform is `platform.drtutor.uk` (product, sibling repo at `../DrTutor Platform/`). Sitemaps are *scoped to a host* — `platform.drtutor.uk` URLs cannot live in this sitemap, even though they are part of the same brand. The two are tied together via cross-links + Organization `sameAs` schema, not via a shared sitemap.
+- **Every route ships `<SEO />`** with a real `title`, `description`, canonical `path`, and a JSON-LD `schema` array. No empty schemas. No copy-pasted descriptions.
+- **JSON-LD is the entity graph.** Think the way Tesla / Stripe / Apple think: every important *thing* on the site is a typed node — `EducationalOrganization`, `Course`, `Service`, `Person`, `Review`, `VideoObject`, `BreadcrumbList`, `FAQPage`. They reference each other. That graph is what powers rich results and LLM citations.
+- **Don't game the signals.** Honest `lastmod` in `sitemap.xml` (update it when the page actually changed). No fake `aggregateRating`. No thin pages padded for keyword density. Google's quality classifier punishes all of it; LLMs won't cite it.
+- **LLM SEO is real and we ship for it.** `public/llms.txt` + `public/llms-full.txt` + AI-bot whitelist in `robots.txt` are already in place — keep them current when content changes. New facts go in `llms-full.txt`.
+- **Performance is an SEO multiplier.** LCP < 2.5s, INP < 200ms, CLS < 0.1 — non-negotiable. A beautiful page that misses Core Web Vitals will be deprioritised by both Google and LLM crawlers.
+
+If you are about to ship content that affects search visibility (a new page, a new schema type, a structural change), open `docs/SEO.md` first.
+
+---
+
 ## When changing anything visible
 
 1. Run `npm run dev` and look at the change in the browser at every breakpoint that matters (390 mobile, 768 tablet, 1440 desktop).

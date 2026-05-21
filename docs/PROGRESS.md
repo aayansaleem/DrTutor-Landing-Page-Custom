@@ -4,10 +4,25 @@ Running record of meaningful changes to the marketing site (`drtutor.uk`). Newes
 
 ---
 
+## 2026-05-21 — SEO playbook + 90-day boost plan + Playwright hygiene
+
+### Added
+- **`docs/SEO.md`** — full playbook covering traditional + LLM SEO. Calls out the "Discovered – currently not indexed" reality (it's a page-quality issue, not a sitemap one), the multi-subdomain rule (sitemaps are host-scoped, so `platform.drtutor.uk` URLs cannot live in `www.drtutor.uk/sitemap.xml`), schema-graph strategy ("think Tesla / Stripe / Apple"), LLM SEO mindset, performance-as-SEO-multiplier, and a tiered action checklist (immediate / soon / cross-repo / off-repo).
+- **`docs/SEO-90-DAY-PLAN.md`** — 6-sprint × 2-week plan grounded in live competitive R&D run on 2026-05-21. Reveals that `drtutor.uk` is **not on page 1 for "drtutor"** (drtutor.net dominates with sitelinks; drtutor.com.au has direct subject overlap from Australia). Lists 15 UK directory backlink targets, 10 parent-blog outreach targets, the LLM-citation gap (Dr Tutor is absent from every "best of" UK tutor listicle surfaced), and a verified GBP at 5.0 / 4 reviews — under-leveraged vs MyTutor (448 reviews) and Tutorful (335). North-star: indexed-pages 1 → 12, brand SERP for "drtutor" not-page-1 → top-3, GBP reviews 4 → 30+, LLM citations 0 → 3+.
+- **`CLAUDE.md`** — new **SEO — non-negotiable** section. Covers the one-brand-two-subdomains rule, JSON-LD entity-graph mindset, honest signals (no gaming `lastmod` or `aggregateRating`), LLM SEO discipline, performance as multiplier. Pointer to `docs/SEO.md` for the full playbook.
+- **`CLAUDE.md`** — new **Playwright / MCP browser hygiene — non-negotiable** section. Five hard rules: every screenshot/snapshot must use an absolute `$env:TEMP\dt-pw\<name>.png` path (POSIX `/tmp/dt-pw/...`), delete after use, never commit, repeat the rules in any subagent prompt, recovery pattern if a tool ignores absolute paths.
+- **`.gitignore`** — defensive rules blocking `.playwright-mcp/`, `playwright-report/`, `test-results/`, `page-*.yml`, `console-*.log`, `trace.zip`, `videos/`. Caught a real leak from the research-agent run before it could be committed.
+- **Memory** (in `~/.claude/projects/E--ERP-Systems-DrTutor-DrTutor-Website/memory/`): `feedback_playwright_hygiene.md` + `MEMORY.md` index — locks the Playwright hygiene preference across all future sessions.
+
+### Changed
+- **`public/sitemap.xml`** — homepage `lastmod` bumped to `2026-05-21` (legitimate signal — featured-video section + analytics + favicon shipped today). Inner-page dates left at `2026-04-09` because their content has not actually changed (honest signals matter).
+
+---
+
 ## 2026-05-21 — Documentation pass
 
 ### Added
-- **`CLAUDE.md`** at repo root — 88-line operating contract for AI assistants working in this codebase. Covers project identity, the two-app split with the Platform, stack at a glance, design philosophy (restraint, big radii, brand token discipline, custom-over-generic), performance non-negotiables, code patterns, authorization model, and the visible-change checklist.
+- **`CLAUDE.md`** at repo root — operating contract for AI assistants working in this codebase. Covers project identity, the two-app split with the Platform, stack at a glance, design philosophy (restraint, big radii, brand token discipline, custom-over-generic), performance non-negotiables, code patterns, authorization model, and the visible-change checklist.
 - **`docs/ARCHITECTURE.md`** — system reference. Where things live (this repo vs. `../DrTutor Platform/`), how the two-app split maps to external `register` / `careers` URLs, full stack table, route table, `src/` folder map, design-system source-of-truth pointer, SEO + analytics flow, build/deploy commands, and cross-repo notes for when Platform paths move.
 
 ---
