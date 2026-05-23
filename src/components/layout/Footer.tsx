@@ -154,14 +154,14 @@ export const Footer: React.FC = () => {
           </div>
           <div className="flex flex-wrap items-center justify-center md:justify-end gap-4 sm:gap-6">
             <Link
-              to="/terms"
+              to="/privacy"
               className="text-[11px] sm:text-xs font-body hover:underline transition-colors duration-200"
               style={{ color: 'var(--brand-teal)' }}
             >
               Privacy Policy
             </Link>
             <Link
-              to="/terms"
+              to="/privacy"
               className="text-[11px] sm:text-xs font-body hover:underline transition-colors duration-200"
               style={{ color: 'var(--brand-teal)' }}
             >

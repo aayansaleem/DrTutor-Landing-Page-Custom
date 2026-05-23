@@ -19,6 +19,7 @@ const ResourcesPage = lazy(() => import('./components/pages/ResourcesPage').then
 const ContactPage = lazy(() => import('./components/pages/ContactPage').then((m) => ({ default: m.ContactPage })));
 const PricingPage = lazy(() => import('./components/pages/PricingPage').then((m) => ({ default: m.PricingPage })));
 const TermsPage = lazy(() => import('./components/pages/TermsPage').then((m) => ({ default: m.TermsPage })));
+const PrivacyPage = lazy(() => import('./components/pages/PrivacyPage').then((m) => ({ default: m.PrivacyPage })));
 const LearnPage = lazy(() => import('./components/pages/LearnPage').then((m) => ({ default: m.LearnPage })));
 
 const RouteFallback = () => (
@@ -88,6 +89,7 @@ export default function App() {
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/pricing" element={<PricingPage />} />
             <Route path="/terms" element={<TermsPage />} />
+            <Route path="/privacy" element={<PrivacyPage />} />
             <Route path="/learn" element={<LearnPage />} />
           </Routes>
         </Suspense>

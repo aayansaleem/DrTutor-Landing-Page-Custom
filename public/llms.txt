@@ -20,7 +20,8 @@
 - [Pricing](https://www.drtutor.uk/pricing): Transparent monthly packages for all key stages, add-on sessions, and trust guarantees
 - [Resources](https://www.drtutor.uk/resources): Free downloadable science revision guides, topic summaries, and study materials for KS2 to A-Level
 - [Contact](https://www.drtutor.uk/contact): Get in touch via form, email, or WhatsApp; book a free assessment
-- [Terms & Conditions](https://www.drtutor.uk/terms): Service agreement, privacy policy, and cancellation terms
+- [Terms & Conditions](https://www.drtutor.uk/terms): Service agreement and cancellation terms
+- [Privacy Policy](https://www.drtutor.uk/privacy): What personal data Dr Tutor collects, why, retention, your UK GDPR rights, and cookies
 - [Book Free Assessment](https://platform.drtutor.uk/register): Registration page to book a free initial assessment
 - [Careers](https://platform.drtutor.uk/careers): Join the Dr Tutor team as a tutor
 

@@ -4,6 +4,34 @@ Running record of meaningful changes to the marketing site (`drtutor.uk`). Newes
 
 ---
 
+## 2026-05-23 — Standalone /privacy page + GDPR/PECR cookies banner update
+
+Split the privacy story out of `/terms` and into its own page, and brought the cookies banner up to PECR-compliant Accept/Reject parity.
+
+### Added
+- **`src/components/pages/PrivacyPage.tsx`** — full UK GDPR + PECR privacy policy in parent-readable plain English. Visual structure mirrors `/terms` (centered teal heading, "Last Updated" stamp, numbered sections, teal bullet dots) so it slots in as a peer. Covers: data controller, what we collect, lawful bases (Art 6(1)(b)/(a)/(f)), third-party recipients (Google LLC, Vercel Inc., DigitalOcean LLC, matched tutors), international transfers (DPF + SCCs), retention (12 months for cold enquiries, service + 6 years for customers, GA4 14 months, server logs 90 days), the eight UK GDPR rights including ICO complaint route, cookies categories, children policy, security measures, and contact (`contact@drtutor.uk`).
+- **`src/App.tsx`** — new lazy-loaded `<Route path="/privacy" element={<PrivacyPage />} />`. Ships as its own 4.01 kB gzip chunk.
+- **JSON-LD schema** on `/privacy`: `WebPage` (referencing the `EducationalOrganization`) + `BreadcrumbList`.
+
+### Changed
+- **`src/components/ui/CookieConsent.tsx`** — PECR fix: Reject is now visually equal to Accept. Both buttons share identical height (`h-8`), padding (`px-3.5`), weight and size; Accept stays gradient-filled, Reject is now outlined (white surface + 1.5 px teal-light border) so it reads as a peer button, not a tertiary text link. Banner copy now says "Cookies for analytics & ads (UK GDPR / PECR)" and the inline link points to `/privacy` (was `/terms`). `aria-label` added to each button for screen readers. Max width nudged 400 → 420 px to accommodate the outlined Reject pill without crowding.
+- **`src/components/layout/Footer.tsx`** — Privacy Policy and Cookies links now point to `/privacy`. Terms & Conditions still points to `/terms`.
+- **`public/sitemap.xml`** — added `/privacy` entry (priority 0.3, yearly). Bumped `<lastmod>` to `2026-05-23` on every URL whose footer Privacy link just changed.
+- **`public/llms.txt`** + **`public/llms-full.txt`** — added Privacy Policy page to the route lists and a new "Privacy & Data Protection (Summary)" section in `llms-full.txt` summarising data collected, lawful bases, third parties, retention, and contact.
+
+### Untouched (deliberately)
+- Consent Mode v2 defaults in `index.html` remain `denied` across all four signals (`analytics_storage`, `ad_storage`, `ad_user_data`, `ad_personalization`). PECR requires defaults-denied.
+- `VITE_LEAD_ENDPOINT` / Django integration.
+- `/terms` page content (still references "privacy policy" inside it, but the canonical privacy doc now lives at `/privacy`).
+
+### Verification
+- `npm run build` clean. New `PrivacyPage` chunk: 9.60 kB raw / 4.01 kB gzip.
+- `tsc --noEmit` shows only the pre-existing asset-import noise documented in CLAUDE.md. Zero new errors from the privacy work.
+- Grep confirms: only one remaining `to="/terms"` Link in the codebase (the Terms & Conditions footer link). All Privacy targets now point to `/privacy`.
+- Exactly one `<Route path="/privacy">` in `src/App.tsx`.
+
+---
+
 ## 2026-05-23 — Google Ads conversion tag wired into /learn
 
 - `src/lib/leads.ts`: set `ADS_CONVERSION_SEND_TO = 'AW-17962620600/Ds-_COeOkLIcELitn_VC'` (was stubbed `null`).

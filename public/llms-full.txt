@@ -20,6 +20,7 @@
 - [Resources](https://www.drtutor.uk/resources)
 - [Contact](https://www.drtutor.uk/contact)
 - [Terms & Conditions](https://www.drtutor.uk/terms)
+- [Privacy Policy](https://www.drtutor.uk/privacy)
 - [Book Free Assessment](https://platform.drtutor.uk/register)
 - [Careers](https://platform.drtutor.uk/careers)
 
@@ -168,3 +169,16 @@ Our platform is committed to helping students succeed and finding the "Perfect M
 - **Limitation of Liability.** Dr Tutor does not guarantee specific academic outcomes; results depend on student engagement.
 - **Changes.** Terms may be updated at any time; users should review the Terms page periodically.
 - Full terms: https://www.drtutor.uk/terms
+
+## Privacy & Data Protection (Summary)
+
+Dr Tutor is the data controller (DRTUTOR LTD, registered in England No. 16076105). Full policy at https://www.drtutor.uk/privacy.
+
+- **What we collect.** Parent name, parent phone, parent email and child age via the free-assessment form on /learn. Anonymised analytics through Google Analytics 4 only with consent. Standard server logs (IP, user-agent, request paths) for security.
+- **Why.** To book the free 30-minute assessment, match a tutor, and follow up (UK GDPR Article 6(1)(b), pre-contractual measures). Marketing follow-up only with explicit consent (Article 6(1)(a), required by UK PECR). Analytics and ad-conversion cookies only with consent.
+- **Who else sees it.** Google (GA4 G-29J2MTL3ZW, Google Ads AW-17962620600, US, EU-US Data Privacy Framework + SCCs), Vercel (US hosting, SCCs), DigitalOcean (UK/EU backend hosting, SCCs where applicable), and the matched tutor (parent name, child age, learning need only).
+- **Retention.** Enquiries that did not convert: 12 months. Active customers: duration of service + 6 years (UK statutory retention for service contracts). GA4 data: 14 months. Server security logs: 90 days.
+- **Your rights.** Access, rectification, erasure, restriction, portability, objection, withdraw consent, and the right to complain to the UK Information Commissioner's Office at ico.org.uk. Email contact@drtutor.uk to exercise any right; we respond within 30 days.
+- **Cookies.** Google Consent Mode v2 with all signals default-denied. Three categories: Strictly necessary (always on), Analytics (opt-in), Marketing/Ads (opt-in). Reject is as prominent as Accept in the banner.
+- **Children.** The assessment is booked by a parent or guardian. We do not knowingly collect data directly from anyone under 13. The child's age is provided by the parent for tutor matching.
+- **Contact.** contact@drtutor.uk for any privacy-related question or data-rights request.
