@@ -6,7 +6,7 @@ Running record of meaningful changes to the marketing site (`drtutor.uk`). Newes
 
 ## 2026-05-23 — Standalone /privacy page + GDPR/PECR cookies banner update
 
-Split the privacy story out of `/terms` and into its own page, and brought the cookies banner up to PECR-compliant Accept/Reject parity.
+Split the privacy story out of `/terms` and into its own page, and brought the cookies banner up to PECR-compliant Accept/Reject parity. Commit `669a7d5`.
 
 ### Added
 - **`src/components/pages/PrivacyPage.tsx`** — full UK GDPR + PECR privacy policy in parent-readable plain English. Visual structure mirrors `/terms` (centered teal heading, "Last Updated" stamp, numbered sections, teal bullet dots) so it slots in as a peer. Covers: data controller, what we collect, lawful bases (Art 6(1)(b)/(a)/(f)), third-party recipients (Google LLC, Vercel Inc., DigitalOcean LLC, matched tutors), international transfers (DPF + SCCs), retention (12 months for cold enquiries, service + 6 years for customers, GA4 14 months, server logs 90 days), the eight UK GDPR rights including ICO complaint route, cookies categories, children policy, security measures, and contact (`contact@drtutor.uk`).
