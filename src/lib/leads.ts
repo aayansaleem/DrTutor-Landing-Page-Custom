@@ -16,10 +16,10 @@
 
 const GA_MEASUREMENT_ID = 'G-29J2MTL3ZW';
 
-// Google Ads conversion — STUB. The Ads team owns the conversion ID + label
-// (the account currently has only call-based actions). Drop it in here as
-// `AW-XXXXXXXXX/xxxxxxxxxxxxxxxxx` and uncomment the conversion call below.
-const ADS_CONVERSION_SEND_TO: string | null = null;
+// Google Ads conversion — live. ID + label from the Ads workstream (handoff
+// 2026-05-23). Fires the Ads `conversion` event on /learn submit-success only,
+// idempotent via the `conversionFired` flag below.
+const ADS_CONVERSION_SEND_TO: string | null = 'AW-17962620600/Ds-_COeOkLIcELitn_VC';
 
 const LEAD_ENDPOINT: string | undefined = (import.meta as unknown as {
   env?: Record<string, string | undefined>;

@@ -4,6 +4,17 @@ Running record of meaningful changes to the marketing site (`drtutor.uk`). Newes
 
 ---
 
+## 2026-05-23 — Google Ads conversion tag wired into /learn
+
+- `src/lib/leads.ts`: set `ADS_CONVERSION_SEND_TO = 'AW-17962620600/Ds-_COeOkLIcELitn_VC'` (was stubbed `null`).
+- `index.html`: added `gtag('config', 'AW-17962620600')` alongside existing GA4 config. No duplicate loader.
+- Verified `npm run build` + `npm run lint` clean.
+- Deployed via push to main (Vercel auto-deploy).
+- Ads workstream notified; they will test-submit `/learn` once Django endpoint also lives and flip campaigns Enabled.
+- Outstanding (not this task): `VITE_LEAD_ENDPOINT` env var → Django URL; that's the parallel backend task tonight.
+
+---
+
 ## 2026-05-23 — Merged Offer + Steps into one JourneySection, removed all 3D Fluency icons
 
 The previous `OfferSection` ("What you get, free") and `StepsSection` ("After you book") were telling the same story twice — both described the assessment moment from slightly different angles. Merged into one cohesive section.
