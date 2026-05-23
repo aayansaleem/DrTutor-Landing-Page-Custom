@@ -12,7 +12,7 @@ export const Footer: React.FC = () => {
       <Link to="/" className="flex items-center justify-center pt-14 sm:pt-18 md:pt-22 lg:pt-28 pb-10 sm:pb-14 md:pb-16 lg:pb-20">
         <img
           src={logoImg}
-          alt="DrTutors — Personalised Tutors"
+          alt="Dr Tutor, Personalised Tutors"
           className="h-24 sm:h-36 md:h-40 lg:h-48 w-auto"
         />
       </Link>

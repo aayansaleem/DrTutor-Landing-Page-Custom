@@ -3,6 +3,13 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import { Navbar, Footer } from './components/layout';
 import { WhatsAppButton } from './components/ui/WhatsAppButton';
 import { CookieConsent } from './components/ui/CookieConsent';
+import { SEO } from './components/ui/SEO';
+import {
+  LEARN_SEO_TITLE,
+  LEARN_SEO_DESCRIPTION,
+  learnServiceSchema,
+  learnFaqSchema,
+} from './lib/learnSeo';
 
 // Route-level code splitting: each page is its own chunk so a visitor only
 // downloads what the route needs. Critical for the /learn ad lander — it loads
@@ -60,6 +67,18 @@ export default function App() {
 
   return (
     <div className="min-h-screen flex flex-col relative">
+      {/* /learn SEO is rendered HERE (not inside LearnPage) so the title,
+          description, canonical and JSON-LD apply on first paint instead of
+          waiting for the lazy chunk to hydrate. Helmet handles dedupe if the
+          page also renders <SEO />. */}
+      {isLanding && (
+        <SEO
+          title={LEARN_SEO_TITLE}
+          description={LEARN_SEO_DESCRIPTION}
+          path="/learn"
+          schema={[learnServiceSchema, learnFaqSchema]}
+        />
+      )}
       <Navbar />
       <main className="flex-grow">
         <Suspense fallback={<RouteFallback />}>

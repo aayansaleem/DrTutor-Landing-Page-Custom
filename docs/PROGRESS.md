@@ -26,6 +26,21 @@ The previous `OfferSection` ("What you get, free") and `StepsSection` ("After yo
 
 ---
 
+## 2026-05-23 — Post-audit: SEO hydration on first paint + footer brand fix
+
+Two follow-ups from the read-only audit at `Google Ads/docs/audits/AUDIT-LEARN-PAGE.md`.
+
+### Changed
+- **`src/lib/learnSeo.ts`** (new) — exports `LEARN_SEO_TITLE`, `LEARN_SEO_DESCRIPTION`, `learnServiceSchema`, `learnFaqSchema` so the SEO config sits **outside the lazy `LearnPage` chunk**.
+- **`src/App.tsx`** — renders `<SEO />` synchronously when `pathname === '/learn'`, before the lazy `<Suspense>` resolves. Result: `document.title`, canonical, OG/Twitter meta and JSON-LD all apply on first paint instead of the ~3s lazy-hydration delay the audit caught. Social-share bots and crawlers now see the right meta for `/learn` from the very first response.
+- **`src/components/pages/LearnPage.tsx`** — the duplicate `<SEO />` + inlined schemas are removed (App now owns it).
+- **`src/components/layout/Footer.tsx`** — logo alt corrected: `"DrTutors — Personalised Tutors"` → `"Dr Tutor, Personalised Tutors"`. Fixes the long-standing brand typo flagged in the brief, drops the decorative em dash at the same time.
+- **`/learn` `<title>`** — em dash swapped for a colon: `"Book a Free Assessment | Dr Tutor: PGCE-Qualified UK Tutors"`.
+
+Other audit findings (navbar simplification on /learn, PricingPeek conscious-decision review, testimonial spellings, MethodSection misleading "dashboard" alt, TrustStrip "All subjects" inaccuracy, Terms page contradictions, etc.) are deferred — full audit is in the markdown.
+
+---
+
 ## 2026-05-23 — `/learn` now uses the site Navbar + Footer
 
 Reverted the original "no nav, no footer" minimal-shell decision for `/learn`. The page now renders the **site Navbar** (with menu links) and the **site Footer** (social icons + Navigation + Support columns + copyright/address + Privacy/Terms/Cookies), so it reads as a proper page in the site, not a kiosk.
