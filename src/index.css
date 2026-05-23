@@ -236,3 +236,63 @@ h1, h2, h3, h4, h5, h6 {
 .video-lightbox-backdrop {
   animation: video-lightbox-backdrop 0.24s ease-out both;
 }
+
+/* ─────────────────────────────────────────────
+   /learn — cinematic surface kit
+   Aurora motion itself is driven by Framer Motion
+   (see AuroraBackground.tsx). These are the static
+   surface treatments: glass, grain, glow, gradient
+   text. Kept lean so the page stays fast.
+   ───────────────────────────────────────────── */
+
+/* Real glass: layered translucency + inner highlight + soft depth */
+.glass {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.78) 0%, rgba(255, 255, 255, 0.62) 100%);
+  backdrop-filter: blur(20px) saturate(1.4);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow:
+    0 24px 60px -12px rgba(3, 26, 53, 0.18),
+    0 8px 24px -8px rgba(15, 165, 165, 0.12),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.9);
+}
+.glass-dark {
+  background: linear-gradient(135deg, rgba(3, 26, 53, 0.55) 0%, rgba(3, 26, 53, 0.32) 100%);
+  backdrop-filter: blur(16px) saturate(1.3);
+  -webkit-backdrop-filter: blur(16px) saturate(1.3);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.18);
+}
+
+/* Fine grain so gradients read premium, not flat */
+.learn-grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Iridescent teal glow ring used on focus / hero accents */
+.teal-glow {
+  box-shadow: 0 0 0 1px rgba(15, 165, 165, 0.35), 0 0 28px rgba(15, 165, 165, 0.28);
+}
+
+/* Gradient-swept headline accent */
+.text-aurora {
+  background: linear-gradient(100deg, #0D8A8A 0%, #0FA5A5 40%, #14B8A6 70%, #0FA5A5 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Blinking caret for live-writing reveals */
+@keyframes learn-caret { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+.learn-caret { display: inline-block; width: 2px; animation: learn-caret 0.9s step-end infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .learn-caret { animation: none; }
+}

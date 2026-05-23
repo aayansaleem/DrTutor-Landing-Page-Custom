@@ -1,9 +1,27 @@
-import { useEffect } from 'react';
+import { useEffect, lazy, Suspense } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { Navbar, Footer } from './components/layout';
-import { HomePage, ResourcesPage, ContactPage, PricingPage, TermsPage } from './components/pages';
 import { WhatsAppButton } from './components/ui/WhatsAppButton';
 import { CookieConsent } from './components/ui/CookieConsent';
+
+// Route-level code splitting: each page is its own chunk so a visitor only
+// downloads what the route needs. Critical for the /learn ad lander — it loads
+// its own bundle, not the entire marketing site.
+const HomePage = lazy(() => import('./components/pages/HomePage').then((m) => ({ default: m.HomePage })));
+const ResourcesPage = lazy(() => import('./components/pages/ResourcesPage').then((m) => ({ default: m.ResourcesPage })));
+const ContactPage = lazy(() => import('./components/pages/ContactPage').then((m) => ({ default: m.ContactPage })));
+const PricingPage = lazy(() => import('./components/pages/PricingPage').then((m) => ({ default: m.PricingPage })));
+const TermsPage = lazy(() => import('./components/pages/TermsPage').then((m) => ({ default: m.TermsPage })));
+const LearnPage = lazy(() => import('./components/pages/LearnPage').then((m) => ({ default: m.LearnPage })));
+
+const RouteFallback = () => (
+  <div className="min-h-screen flex items-center justify-center bg-white" aria-hidden="true">
+    <div
+      className="w-9 h-9 rounded-full border-[3px] animate-spin"
+      style={{ borderColor: 'var(--brand-teal-light)', borderTopColor: 'var(--brand-teal)' }}
+    />
+  </div>
+);
 
 const GA_MEASUREMENT_ID = 'G-29J2MTL3ZW';
 
@@ -31,21 +49,32 @@ function usePageTracking() {
 
 export default function App() {
   usePageTracking();
+  const location = useLocation();
+
+  // /learn uses the site's Navbar + Footer like every other page (with a
+  // WhatsApp CTA swapped in for the booking button — handled inside Navbar).
+  // The only chrome we still suppress here is the floating WhatsApp button,
+  // since /learn already has WhatsApp in the nav, the sticky mobile bar, and
+  // the final CTA section.
+  const isLanding = location.pathname === '/learn';
 
   return (
     <div className="min-h-screen flex flex-col relative">
       <Navbar />
       <main className="flex-grow">
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/resources" element={<ResourcesPage />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="/pricing" element={<PricingPage />} />
-          <Route path="/terms" element={<TermsPage />} />
-        </Routes>
+        <Suspense fallback={<RouteFallback />}>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/resources" element={<ResourcesPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/pricing" element={<PricingPage />} />
+            <Route path="/terms" element={<TermsPage />} />
+            <Route path="/learn" element={<LearnPage />} />
+          </Routes>
+        </Suspense>
       </main>
       <Footer />
-      <WhatsAppButton />
+      {!isLanding && <WhatsAppButton />}
       <CookieConsent />
     </div>
   );

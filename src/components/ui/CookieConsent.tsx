@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Shield } from 'lucide-react';
+import { Cookie } from 'lucide-react';
 import { useCookieConsent } from '@/hooks/useCookieConsent';
 
 export const CookieConsent: React.FC = () => {
@@ -9,132 +9,52 @@ export const CookieConsent: React.FC = () => {
   if (!visible) return null;
 
   return (
-    <>
-      {/* Backdrop — subtle, allows click-through to page */}
-      <div className="fixed inset-0 z-[998] pointer-events-none" />
-
-      {/* Popup card */}
+    <div
+      className="fixed z-[999] bottom-4 left-4 right-4 sm:right-auto sm:max-w-[400px] animate-fade-up"
+      style={{ animationDuration: '0.5s' }}
+      role="dialog"
+      aria-label="Cookie preferences"
+    >
       <div
-        className="fixed z-[999] bottom-4 left-4 right-4 sm:right-auto sm:max-w-[370px] animate-fade-up"
-        style={{ animationDuration: '0.5s' }}
+        className="flex items-center gap-3 rounded-full pl-4 pr-1.5 py-1.5"
+        style={{
+          backgroundColor: 'rgba(255,255,255,0.92)',
+          backdropFilter: 'blur(14px) saturate(1.5)',
+          WebkitBackdropFilter: 'blur(14px) saturate(1.5)',
+          border: '1px solid rgba(15,165,165,0.16)',
+          boxShadow: '0 12px 32px rgba(3,26,53,0.14), 0 2px 6px rgba(15,165,165,0.08)',
+        }}
       >
-        <div
-          className="rounded-2xl p-5 sm:p-6"
-          style={{
-            backgroundColor: '#FFFFFF',
-            boxShadow:
-              '0 8px 32px rgba(3,26,53,0.12), 0 2px 8px rgba(15,165,165,0.08)',
-            border: '1px solid rgba(15,165,165,0.10)',
-          }}
+        <span
+          className="shrink-0 w-8 h-8 rounded-full flex items-center justify-center"
+          style={{ backgroundColor: 'var(--brand-teal-light)' }}
+          aria-hidden="true"
         >
-          {/* Header row */}
-          <div className="flex items-center gap-2.5 mb-3">
-            <div
-              className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
-              style={{ backgroundColor: 'var(--brand-teal-light)' }}
-            >
-              <Shield
-                size={16}
-                style={{ color: 'var(--brand-teal)' }}
-                aria-hidden="true"
-              />
-            </div>
-            <h3 className="font-headline font-semibold text-sm text-brand-teal">
-              Cookie Preferences
-            </h3>
-          </div>
-
-          {/* Description */}
-          <p
-            className="font-body text-xs leading-relaxed mb-4"
-            style={{ color: 'var(--text-secondary)' }}
+          <Cookie size={15} style={{ color: 'var(--brand-teal-dark)' }} />
+        </span>
+        <p className="font-body text-[12px] leading-snug text-brand-navy/75 flex-1 min-w-0">
+          We use cookies for analytics and ads.{' '}
+          <Link to="/terms" className="underline" style={{ color: 'var(--brand-teal-dark)' }}>
+            Learn more
+          </Link>
+        </p>
+        <div className="flex items-center gap-1.5 shrink-0">
+          <button
+            onClick={reject}
+            className="h-8 px-3 rounded-full font-body font-semibold text-[11px] cursor-pointer transition-colors duration-200 hover:bg-brand-teal-lighter"
+            style={{ color: 'var(--brand-teal-dark)' }}
           >
-            We use cookies from Google Analytics and Google Ads to understand
-            how you use our site and to show relevant content. You can accept
-            or reject non-essential cookies below.
-          </p>
-
-          {/* Cookie categories — compact inline pills */}
-          <div className="flex flex-wrap gap-1.5 mb-4">
-            <span
-              className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-body font-semibold"
-              style={{
-                backgroundColor: 'var(--brand-teal-light)',
-                color: 'var(--brand-teal)',
-              }}
-            >
-              <span
-                className="w-1.5 h-1.5 rounded-full"
-                style={{ backgroundColor: 'var(--brand-teal)' }}
-              />
-              Analytics
-            </span>
-            <span
-              className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-body font-semibold"
-              style={{
-                backgroundColor: 'var(--brand-teal-light)',
-                color: 'var(--brand-teal)',
-              }}
-            >
-              <span
-                className="w-1.5 h-1.5 rounded-full"
-                style={{ backgroundColor: 'var(--brand-teal)' }}
-              />
-              Advertising
-            </span>
-            <span
-              className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-body font-semibold"
-              style={{
-                backgroundColor: 'var(--brand-teal-lighter)',
-                color: 'var(--brand-navy)',
-                opacity: 0.7,
-              }}
-            >
-              <span
-                className="w-1.5 h-1.5 rounded-full"
-                style={{ backgroundColor: 'var(--brand-green)' }}
-              />
-              Essential (always on)
-            </span>
-          </div>
-
-          {/* Action buttons */}
-          <div className="flex items-center gap-2.5">
-            <button
-              onClick={reject}
-              className="flex-1 h-9 rounded-full font-body font-semibold text-xs cursor-pointer transition-all duration-200 hover:shadow-md active:scale-[0.97]"
-              style={{
-                border: '1.5px solid var(--brand-teal)',
-                color: 'var(--brand-teal)',
-                backgroundColor: 'transparent',
-              }}
-            >
-              Reject
-            </button>
-            <button
-              onClick={accept}
-              className="flex-1 h-9 rounded-full font-body font-semibold text-xs text-white cursor-pointer transition-all duration-200 hover:shadow-md active:scale-[0.97]"
-              style={{
-                backgroundColor: 'var(--brand-teal)',
-                border: '1.5px solid var(--brand-teal)',
-              }}
-            >
-              Accept All
-            </button>
-          </div>
-
-          {/* Footer link */}
-          <div className="mt-3 text-center">
-            <Link
-              to="/terms"
-              className="font-body text-[10px] hover:underline transition-colors duration-200"
-              style={{ color: 'var(--text-tertiary)' }}
-            >
-              Privacy Policy &middot; Terms &amp; Conditions
-            </Link>
-          </div>
+            Reject
+          </button>
+          <button
+            onClick={accept}
+            className="h-8 px-3.5 rounded-full font-body font-semibold text-[11px] text-white cursor-pointer transition-transform duration-200 active:scale-95"
+            style={{ background: 'linear-gradient(135deg, var(--brand-teal) 0%, var(--brand-teal-dark) 100%)' }}
+          >
+            Accept
+          </button>
         </div>
       </div>
-    </>
+    </div>
   );
 };

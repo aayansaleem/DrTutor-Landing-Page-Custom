@@ -4,6 +4,90 @@ Running record of meaningful changes to the marketing site (`drtutor.uk`). Newes
 
 ---
 
+## 2026-05-23 — Merged Offer + Steps into one JourneySection, removed all 3D Fluency icons
+
+The previous `OfferSection` ("What you get, free") and `StepsSection` ("After you book") were telling the same story twice — both described the assessment moment from slightly different angles. Merged into one cohesive section.
+
+### Added
+- **`src/components/learn/JourneySection.tsx`** — single section titled "How it works, step by step". Three cards (Book / Meet / Plan), each fusing the process moment with the value attached to it. Visual treatment mirrors the homepage `LessonsStickSection` (white rounded card, brand-teal-light border, hover lift, illustration bottom-pinned).
+- **`src/data/learn.ts`** — new `journey` data array. Removed the now-unused `offerItems`, `steps`, `methodCycle`, and their interfaces.
+
+### Removed
+- `src/components/learn/OfferSection.tsx` — superseded by JourneySection.
+- `src/components/learn/StepsSection.tsx` — superseded by JourneySection.
+- All Icons8 3D Fluency PNGs (`src/assets/icons3d/`, 12 icons, ~584 KB) — they didn't carry the DrTutor teal/coral/gold palette and looked off-brand against the rest of the site. **Replaced with the existing DT brand illustrations** (`book-clock.avif`, `calendar.avif`, `book-bulb.avif`) — the same ones used in the homepage's `LessonsStickSection`, which map perfectly to Book / Meet / Plan.
+- `Icon3d` component + `ICON3D` map from `primitives.tsx` — fully unused after the merge.
+
+### Changed
+- **`AssessmentForm.tsx`** success state — `Icon3d "approval"` swapped for a **custom teal-gradient check medallion** (radial teal gradient, inner white ring, big white check SVG). Lighter than a PNG and fully on-brand.
+
+### Bundle / perf
+- `/learn` chunk dropped from 16.46 → 12.91 kB gzip after removing the 3D PNG imports.
+
+---
+
+## 2026-05-23 — `/learn` now uses the site Navbar + Footer
+
+Reverted the original "no nav, no footer" minimal-shell decision for `/learn`. The page now renders the **site Navbar** (with menu links) and the **site Footer** (social icons + Navigation + Support columns + copyright/address + Privacy/Terms/Cookies), so it reads as a proper page in the site, not a kiosk.
+
+### Changed
+- **`src/components/layout/Navbar.tsx`** — primary CTA is pathname-aware: on `/learn` the "Book a Free Assessment" button becomes a **green WhatsApp pill** linking to `wa.me/447526327612` (since the booking form is already inline on the page). The desktop pill, the mobile menu CTA, and the closing behaviour are all swapped. All other pages are unchanged.
+- **`src/App.tsx`** — the dedicated landing-shell branch is removed; `/learn` flows through the normal app layout. Only the **floating WhatsApp button is suppressed** on `/learn` (avoids triplication with the nav CTA + sticky mobile bar).
+- **`src/components/pages/LearnPage.tsx`** — drops `LearnHeader` + `LearnFooter` usage.
+- **`src/components/learn/LearnHeader.tsx`** — deleted (no longer used).
+- **`src/components/learn/FinalCta.tsx`** — `LearnFooter` export removed (the global Footer now picks up under the photo fan via its `footer-gradient`).
+
+### Result
+- One global header / footer / cookie banner everywhere, with the only /learn-specific tweak being the nav CTA.
+
+---
+
+## 2026-05-23 — `/learn` redesign aligned with site DNA + sleek site-wide cookie banner
+
+The previous `/learn` build (heavy glass + aurora throughout) diverged too far from the homepage's visual language. Redesigned so the lander reads as a focused sibling of the marketing site, not a different aesthetic.
+
+### Changed
+- **Hero** — now uses the homepage `hero-bg` teal gradient with `rounded-b-[40px]/56px` bottom curve. Two-column split rebalanced (≈ 55/45) so the form no longer feels stretched. Headline kept the kinetic word-reveal with teal "exactly" + drawn underline.
+- **Header** — bigger logo (`h-10/sm:h-11`), confident bar; transparent over the hero, fades to white-translucent with subtle border on scroll. Bigger WhatsApp pill (shortens to "Chat" on mobile).
+- **Form (`AssessmentForm.tsx`)** — age pill-strip replaced with a **modern custom dropdown** (Framer Motion popover, listbox role, click-outside + escape, branded). Floating-label fields swapped for clean icon-prefixed fields. Conversion logic + lead delivery unchanged.
+- **Tutors (`TutorsSection.tsx`)** — rebuilt to mirror the homepage `TutorsSection` (warm beige `#EDE7DA` card, mix-blend photo, teal `#0E8C8C` info badge). Star ratings dropped (honesty rule).
+- **I/We/You** — promoted from a thin strip to its own `LearnTeachingCycleSection.tsx`, mirroring the `/resources` page treatment (image card + dark overlay + white title + teal subtitle pill + description below).
+- **Method (`MethodSection.tsx`)** — slimmed to mirror the homepage `TeachingTechniquesSection`: `teaching-card-bg` block with Lemov intro + technique pills + the dashboard mockup with a soft glow.
+- **Testimonials (`TestimonialsSection.tsx`)** — rebuilt to mirror the homepage carousel (chevron arrows, dot pagination, white card with teal gradient overlay).
+- **Final CTA + footer (`FinalCta.tsx`)** — rebuilt to mirror the homepage `CTASection` (3-photo fan bleeding into `footer-gradient`), with a `rounded-t-[40px]/56px` top curve for symmetry with the hero. Minimal footer kept (Privacy / Terms / © DRTUTOR LTD).
+- **Offer + Steps + FAQ + Form section** — dropped the heavy glass/aurora layer in favour of the homepage palette (white cards on `bg-muted` / `bg-section-alt`, soft shadow, brand-token borders). 3D Icons8 glossy icons kept.
+- **AuroraBackground primitive removed** (no longer used).
+
+### Site-wide
+- **`CookieConsent`** — sleek pill bar (one row, icon + line + Reject/Accept). Compact ~400px max-w, replacing the bulky card. Same accept/reject + Consent Mode v2 wiring intact.
+
+### Notes
+- Verified at 390 / 1440 against the standard. The lander now reads as part of the same brand family as the homepage, focused on conversion.
+
+---
+
+## 2026-05-22 — `/learn` ad landing page (cinematic redesign)
+
+New single-goal landing page for Google Ads traffic. Build brief: `Google Ads/docs/handoffs/HANDOFF-LEARN-PAGE.md`. First (flat) attempt was scrapped for not hitting the design bar; rebuilt as a cinematic aurora + glass design.
+
+### Added
+- **Route `/learn`** in `App.tsx`, lazy-loaded as its own chunk (~16 kB gzip). Renders its own minimal shell — the global Navbar, Footer and floating WhatsApp button are **suppressed** on this route (single goal, zero exits, logo not linked away). Cookie banner kept.
+- **`src/components/learn/`** — the page. Cinematic design language: living **aurora** (Framer Motion driven, `AuroraBackground.tsx`), **real glass** surfaces (`.glass` in `index.css`), **3D glossy icons** (Icons8 3D Fluency, bundled in `src/assets/icons3d/`), cursor-reactive tilt, scroll-linked reveals, a self-drawing step connector, and an **alive** form success state (live-writing + 3D check). Sections: glass header, parallax hero with the form inline (desktop), trust marquee, glass-bento offer, 3-step, tutor cards with cursor spotlight, condensed method (Teach Like a Champion + I/We/You + technique pills + dashboard mockup), testimonials, centerpiece form, FAQ, full-bleed aurora CTA, minimal footer, mobile sticky CTA bar.
+- **`src/components/learn/primitives.tsx`** — shared `Reveal`, `GlassCard` (tilt), `LiveWrite`, `Icon3d`.
+- **`src/lib/leads.ts`** — `submitLead()` lead delivery + `fireLeadConversion()` (GA4 `generate_lead`, once per submission; Google Ads conversion tag stubbed pending the ads team's conversion ID). Captures `gclid` + UTM into the payload for offline conversion import.
+- **`src/data/learn.ts`** — page copy (offer, steps, method, FAQs, trust signals). Parent-facing voice, no em dashes.
+- **`.env.example`** — `VITE_LEAD_ENDPOINT` (empty for now).
+
+### Pending / dependencies (IMPORTANT)
+- **Backend:** Firebase was retired 2026-05-22; the platform is migrating to Django. `VITE_LEAD_ENDPOINT` is **empty**, so the form runs in **stub mode** (simulated success, lead NOT persisted). **Do not resume paid ads until the Django endpoint is wired**, or leads silently vanish.
+- **Tracking:** GA4 `generate_lead` is live; the Google Ads conversion tag is stubbed in `leads.ts` (`ADS_CONVERSION_SEND_TO`) until the ads team supplies the `AW-…/label`.
+- Honesty: no review numbers / star ratings / `aggregateRating` anywhere (no verifiable source). Pricing deliberately omitted.
+
+### Notes
+- Design verified personally at 390 / 1440 against the standard before sign-off (charged-up modern + optimized + crafted experience). Footer Privacy/Terms both point at `/terms` for now (no dedicated `/privacy` route yet).
+
+---
+
 ## 2026-05-21 — Outreach system blueprint + entity unification
 
 ### Added

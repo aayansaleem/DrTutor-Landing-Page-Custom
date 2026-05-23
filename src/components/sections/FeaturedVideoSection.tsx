@@ -61,7 +61,14 @@ const VideoLightbox: React.FC<VideoLightboxProps> = ({ onClose }) => {
   );
 };
 
-export const FeaturedVideoSection: React.FC = () => {
+interface FeaturedVideoSectionProps {
+  /** When true, uses tighter top/bottom padding suited for pages where the
+   *  video sits between two other sections of similar bg (e.g. /learn).
+   *  Defaults to the homepage's roomier padding. */
+  compact?: boolean;
+}
+
+export const FeaturedVideoSection: React.FC<FeaturedVideoSectionProps> = ({ compact = false }) => {
   const [open, setOpen] = useState(false);
   const [thumbSrc, setThumbSrc] = useState(THUMB_MAXRES);
   const playBtnRef = useRef<HTMLButtonElement>(null);
@@ -111,7 +118,7 @@ export const FeaturedVideoSection: React.FC = () => {
   }, [open, closeLightbox]);
 
   return (
-    <section className="relative bg-white pt-6 sm:pt-8 lg:pt-10 pb-20 sm:pb-24 lg:pb-28 overflow-hidden">
+    <section className={`relative bg-white overflow-hidden ${compact ? 'pt-10 sm:pt-12 lg:pt-14 pb-10 sm:pb-12 lg:pb-14' : 'pt-6 sm:pt-8 lg:pt-10 pb-20 sm:pb-24 lg:pb-28'}`}>
       {/* Soft teal radial halo behind the frame */}
       <div
         aria-hidden

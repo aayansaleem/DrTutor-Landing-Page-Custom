@@ -56,8 +56,18 @@ Centralised in `src/data/navigation.ts` — change links there, not at the call 
 | `/resources` | `ResourcesPage` | `src/components/pages/ResourcesPage.tsx` |
 | `/contact` | `ContactPage` | `src/components/pages/ContactPage.tsx` |
 | `/terms` | `TermsPage` | `src/components/pages/TermsPage.tsx` |
+| `/learn` | `LearnPage` | `src/components/pages/LearnPage.tsx` |
 
-Wired in `src/App.tsx`. Hash-anchored deep links (`/#tutors`, `/#how-it-works`, `/#faq`, `/#testimonials`) are handled by `Navbar.tsx` via a `useEffect` on `useLocation()`.
+Wired in `src/App.tsx`. Routes are lazy-loaded (one chunk each). Hash-anchored deep links (`/#tutors`, `/#how-it-works`, `/#faq`, `/#testimonials`) are handled by `Navbar.tsx` via a `useEffect` on `useLocation()`.
+
+### `/learn` — the ad landing page (special case)
+
+`/learn` is the **single-goal Google Ads landing page** and breaks the usual pattern deliberately:
+
+- **No site chrome.** `App.tsx` detects `pathname === '/learn'` and renders a bare shell — no global `Navbar`, `Footer`, or floating `WhatsAppButton`. The page ships its own minimal glass header + footer (`src/components/learn/`). One goal: book the free assessment. The logo is not a link away.
+- **Lead delivery is in-repo, not an external link.** Unlike "Book a Free Assessment" elsewhere (which links to `platform.drtutor.uk/register`), `/learn` has the booking form **inline** and submits via `src/lib/leads.ts` → `submitLead()`. Firebase was retired (2026-05-22); until the Django endpoint is set in `VITE_LEAD_ENDPOINT`, the form runs in **stub mode** (no lead persisted). Do not run paid ads until that endpoint is wired.
+- **Tracking.** `fireLeadConversion()` pushes GA4 `generate_lead` on submit success (once per submission) and holds a stubbed Google Ads conversion tag (`ADS_CONVERSION_SEND_TO`) for the ads team's `AW-…/label`. `gclid`/UTM are captured into the lead payload for offline conversion import.
+- **Design.** Cinematic aurora + glass system in `src/components/learn/` (`AuroraBackground`, `primitives.tsx`), 3D icons in `src/assets/icons3d/`. Brief: `Google Ads/docs/handoffs/HANDOFF-LEARN-PAGE.md`.
 
 ---
 
