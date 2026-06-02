@@ -1,17 +1,15 @@
 /**
  * Lead delivery + conversion tracking for the /learn ad landing page.
  *
- * BACKEND STATUS (2026-05-22): Firebase was retired today; the platform is
- * migrating to Django. Until that endpoint exists, `VITE_LEAD_ENDPOINT` is
- * empty and `submitLead` runs in STUB mode: it simulates a successful submit
- * so the UI + tracking flow can be verified, but it DOES NOT persist the lead.
+ * BACKEND STATUS (2026-06-02): LIVE. Leads POST to the DrTutor Workspace Django
+ * endpoint https://api.drtutor.uk/api/v1/assessment-bookings/quick/ (public,
+ * rate-limited), which persists an AssessmentBooking (source `learn-ads`) and
+ * returns { reference_number }. The endpoint defaults on in production builds;
+ * set VITE_LEAD_ENDPOINT to override. In local dev with no override, submitLead
+ * stays in STUB mode (simulated success, no network) so dev never posts to prod.
  *
- * >>> Do not resume paid ads until VITE_LEAD_ENDPOINT points at the live
- * >>> Django endpoint, or every lead silently vanishes. <<<
- *
- * To go live: set VITE_LEAD_ENDPOINT to the Django URL (e.g.
- * https://api.drtutor.uk/assessment-bookings/). Django should accept the
- * LeadPayload shape below and return { referenceNumber }.
+ * Wire format expected by Django: snake_case keys, FLAT utm_* fields, and a
+ * valid `source` choice (`learn-ads`).
  */
 
 const GA_MEASUREMENT_ID = 'G-29J2MTL3ZW';
@@ -21,9 +19,16 @@ const GA_MEASUREMENT_ID = 'G-29J2MTL3ZW';
 // idempotent via the `conversionFired` flag below.
 const ADS_CONVERSION_SEND_TO: string | null = 'AW-17962620600/Ds-_COeOkLIcELitn_VC';
 
-const LEAD_ENDPOINT: string | undefined = (import.meta as unknown as {
+const PROD_LEAD_ENDPOINT = 'https://api.drtutor.uk/api/v1/assessment-bookings/quick/';
+
+const _env = (import.meta as unknown as {
   env?: Record<string, string | undefined>;
-}).env?.VITE_LEAD_ENDPOINT;
+}).env;
+
+// Explicit override wins; otherwise default to the live endpoint in production
+// builds. Dev with no override resolves to undefined -> stub mode.
+const LEAD_ENDPOINT: string | undefined =
+  _env?.VITE_LEAD_ENDPOINT || (_env?.PROD ? PROD_LEAD_ENDPOINT : undefined);
 
 const ATTRIBUTION_KEY = 'dt_learn_attribution';
 
@@ -32,14 +37,6 @@ export interface LeadInput {
   parentPhone: string;
   parentEmail: string;
   childAge: number;
-}
-
-export interface LeadPayload extends LeadInput {
-  source: 'learn';
-  gclid?: string;
-  utm?: Record<string, string>;
-  submittedAt: string;
-  pagePath: string;
 }
 
 export interface LeadResult {
@@ -107,22 +104,29 @@ function stubReference(): string {
  */
 export async function submitLead(input: LeadInput): Promise<LeadResult> {
   const { gclid, utm } = readAttribution();
-  const payload: LeadPayload = {
-    ...input,
-    source: 'learn',
-    submittedAt: new Date().toISOString(),
-    pagePath: typeof window !== 'undefined' ? window.location.pathname : '/learn',
+
+  // Wire format expected by the Django endpoint: snake_case keys, FLAT utm_*
+  // fields, a valid `source` choice. Server responds with { reference_number }.
+  const body: Record<string, unknown> = {
+    parent_name: input.parentName,
+    parent_phone: input.parentPhone,
+    parent_email: input.parentEmail,
+    child_age: input.childAge,
+    source: 'learn-ads',
     ...(gclid ? { gclid } : {}),
-    ...(utm ? { utm } : {}),
+    ...(utm?.utm_source ? { utm_source: utm.utm_source } : {}),
+    ...(utm?.utm_medium ? { utm_medium: utm.utm_medium } : {}),
+    ...(utm?.utm_campaign ? { utm_campaign: utm.utm_campaign } : {}),
+    ...(utm?.utm_content ? { utm_content: utm.utm_content } : {}),
+    ...(utm?.utm_term ? { utm_term: utm.utm_term } : {}),
   };
 
   if (!LEAD_ENDPOINT) {
     if (import.meta && (import.meta as unknown as { env?: { DEV?: boolean } }).env?.DEV) {
       // eslint-disable-next-line no-console
       console.warn(
-        '[DrTutor /learn] VITE_LEAD_ENDPOINT is not set — lead was NOT persisted (stub mode). ' +
-          'Wire the Django endpoint before resuming paid ads.',
-        payload,
+        '[DrTutor /learn] No lead endpoint configured — lead was NOT persisted (stub mode).',
+        body,
       );
     }
     await new Promise((resolve) => setTimeout(resolve, 650));
@@ -133,13 +137,13 @@ export async function submitLead(input: LeadInput): Promise<LeadResult> {
     const res = await fetch(LEAD_ENDPOINT, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
+      body: JSON.stringify(body),
     });
     if (!res.ok) {
       return { ok: false, error: `Server responded ${res.status}` };
     }
-    const json = (await res.json().catch(() => ({}))) as { referenceNumber?: string };
-    return { ok: true, referenceNumber: json.referenceNumber };
+    const json = (await res.json().catch(() => ({}))) as { reference_number?: string };
+    return { ok: true, referenceNumber: json.reference_number };
   } catch {
     return { ok: false, error: 'network' };
   }
