@@ -37,6 +37,9 @@ export interface LeadInput {
   parentPhone: string;
   parentEmail: string;
   childAge: number;
+  /** Affirmative opt-in to be contacted + to use details for ad measurement.
+   *  Gates the server-side Google Ads conversion upload (UK GDPR / PECR). */
+  marketingConsent: boolean;
 }
 
 export interface LeadResult {
@@ -112,6 +115,7 @@ export async function submitLead(input: LeadInput): Promise<LeadResult> {
     parent_phone: input.parentPhone,
     parent_email: input.parentEmail,
     child_age: input.childAge,
+    marketing_consent: input.marketingConsent,
     source: 'learn-ads',
     ...(gclid ? { gclid } : {}),
     ...(utm?.utm_source ? { utm_source: utm.utm_source } : {}),

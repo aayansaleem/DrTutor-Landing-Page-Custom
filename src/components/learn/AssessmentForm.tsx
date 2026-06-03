@@ -178,6 +178,7 @@ export const AssessmentForm: React.FC<AssessmentFormProps> = ({ instanceId, head
   const [errors, setErrors] = useState<Partial<Record<keyof FormState | 'submit', string>>>({});
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
+  const [marketingConsent, setMarketingConsent] = useState(false);
 
   const update = (key: keyof FormState, value: string) => {
     setForm((p) => ({ ...p, [key]: value }));
@@ -210,6 +211,7 @@ export const AssessmentForm: React.FC<AssessmentFormProps> = ({ instanceId, head
       parentPhone: form.parentPhone.trim(),
       parentEmail: form.parentEmail.trim(),
       childAge: parseInt(form.childAge, 10),
+      marketingConsent,
     });
     setSubmitting(false);
     if (result.ok) {
@@ -286,6 +288,33 @@ export const AssessmentForm: React.FC<AssessmentFormProps> = ({ instanceId, head
                 {errors.submit}
               </p>
             )}
+
+            <button
+              type="button"
+              role="checkbox"
+              aria-checked={marketingConsent}
+              onClick={() => setMarketingConsent((c) => !c)}
+              className="mt-5 flex items-start gap-2.5 text-left w-full cursor-pointer"
+            >
+              <span
+                className="mt-px flex-shrink-0 w-[18px] h-[18px] rounded-md flex items-center justify-center transition-all duration-200"
+                style={{
+                  border: `1.5px solid ${marketingConsent ? 'var(--brand-teal)' : 'var(--border-default)'}`,
+                  backgroundColor: marketingConsent ? 'var(--brand-teal)' : '#FFFFFF',
+                }}
+              >
+                <AnimatePresence>
+                  {marketingConsent && (
+                    <motion.span initial={{ scale: 0 }} animate={{ scale: 1 }} exit={{ scale: 0 }} transition={{ duration: 0.15 }}>
+                      <Check size={13} className="text-white" strokeWidth={3} />
+                    </motion.span>
+                  )}
+                </AnimatePresence>
+              </span>
+              <span className="font-body text-[11px] leading-relaxed text-brand-navy/55">
+                Yes, DrTutor can contact me about my enquiry and use my details to measure our advertising. Optional, and you can opt out anytime.
+              </span>
+            </button>
 
             <motion.button
               type="submit"
