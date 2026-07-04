@@ -149,7 +149,7 @@ export const Footer: React.FC = () => {
               className="text-[10px] sm:text-[11px] font-body"
               style={{ color: 'var(--brand-teal)', opacity: 0.75 }}
             >
-              21 Fulford Grove, Watford WD19 7QQ, United Kingdom
+              Unit A 82 James Carter Road Mildenhall IP28 7DE
             </p>
           </div>
           <div className="flex flex-wrap items-center justify-center md:justify-end gap-4 sm:gap-6">
