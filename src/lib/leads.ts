@@ -40,12 +40,18 @@ export interface LeadInput {
   /** Affirmative opt-in to be contacted + to use details for ad measurement.
    *  Gates the server-side Google Ads conversion upload (UK GDPR / PECR). */
   marketingConsent: boolean;
+  /** Cloudflare Turnstile token. The server verifies it before storing a lead. */
+  turnstileToken?: string | null;
+  /** Honeypot. A real browser leaves this empty because it is hidden. */
+  honeypot?: string;
 }
 
 export interface LeadResult {
   ok: boolean;
   referenceNumber?: string;
   error?: string;
+  /** Server-supplied message, already parent friendly. */
+  detail?: string;
 }
 
 interface Attribution {
@@ -110,13 +116,20 @@ export async function submitLead(input: LeadInput): Promise<LeadResult> {
 
   // Wire format expected by the Django endpoint: snake_case keys, FLAT utm_*
   // fields, a valid `source` choice. Server responds with { reference_number }.
+  // /learn is now the destination for the site's own "Book a free assessment"
+  // buttons as well as the ad traffic it was built for. Tag the lead by where
+  // it actually came from, so the CRM does not read organic enquiries as paid.
+  const fromAd = Boolean(gclid || utm?.utm_source);
+
   const body: Record<string, unknown> = {
     parent_name: input.parentName,
     parent_phone: input.parentPhone,
     parent_email: input.parentEmail,
     child_age: input.childAge,
     marketing_consent: input.marketingConsent,
-    source: 'learn-ads',
+    source: fromAd ? 'learn-ads' : 'short-form',
+    website: input.honeypot ?? '',
+    ...(input.turnstileToken ? { turnstile_token: input.turnstileToken } : {}),
     ...(gclid ? { gclid } : {}),
     ...(utm?.utm_source ? { utm_source: utm.utm_source } : {}),
     ...(utm?.utm_medium ? { utm_medium: utm.utm_medium } : {}),
@@ -144,7 +157,17 @@ export async function submitLead(input: LeadInput): Promise<LeadResult> {
       body: JSON.stringify(body),
     });
     if (!res.ok) {
-      return { ok: false, error: `Server responded ${res.status}` };
+      const problem = (await res.json().catch(() => ({}))) as {
+        code?: string;
+        detail?: string;
+      };
+      if (problem.code === 'bot_check_failed') {
+        return { ok: false, error: 'bot-check', detail: problem.detail };
+      }
+      if (res.status === 429) {
+        return { ok: false, error: 'rate-limited', detail: problem.detail };
+      }
+      return { ok: false, error: `Server responded ${res.status}`, detail: problem.detail };
     }
     const json = (await res.json().catch(() => ({}))) as { reference_number?: string };
     return { ok: true, referenceNumber: json.reference_number };

@@ -140,11 +140,11 @@ export const Navbar: React.FC = () => {
               </Button>
             </a>
           ) : (
-            <a href="https://platform.drtutor.uk/register" target="_blank" rel="noopener noreferrer">
+            <Link to="/learn">
               <Button size="md" className="bg-brand-teal-dark hover:bg-brand-teal-darker rounded-full px-6">
                 Book a Free Assessment
               </Button>
-            </a>
+            </Link>
           )}
         </div>
 
@@ -210,9 +210,13 @@ export const Navbar: React.FC = () => {
               </Button>
             </a>
           ) : (
-            <a href="https://platform.drtutor.uk/register" target="_blank" rel="noopener noreferrer" className="w-full mt-2">
+            <Link
+              to="/learn"
+              className="w-full mt-2"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
               <Button className="w-full">Book a Free Assessment</Button>
-            </a>
+            </Link>
           )}
         </div>
       )}

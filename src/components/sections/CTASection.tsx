@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import React from 'react';
 import { Container } from '../ui';
 import girlLeft from '@/assets/images/girl-hero.jpg';
@@ -35,14 +36,12 @@ export const CTASection: React.FC = () => {
             >
               Find a Tutor
             </a>
-            <a
-              href="https://platform.drtutor.uk/register"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              to="/learn"
               className="inline-flex items-center justify-center h-11 sm:h-12 px-6 sm:px-8 font-body font-semibold text-sm rounded-full cursor-pointer transition-all duration-300 hover:shadow-lg active:scale-[0.97] resources-hero-bg "
             >
               Book a Free Assessment
-            </a>
+            </Link>
           </div>
         </div>
       </Container>

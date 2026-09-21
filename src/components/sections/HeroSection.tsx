@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import React from 'react';
 import { Container } from '../ui';
 import { motion } from 'motion/react';
@@ -40,14 +41,12 @@ export const HeroSection: React.FC = () => {
                 >
                   Find a Tutor <Search size={20} className="group-hover:scale-110 transition-transform" />
                 </a>
-                <a
-                  href="https://platform.drtutor.uk/register"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  to="/learn"
                   className="text-center px-6 sm:px-8 py-3 sm:py-3.5 rounded-full bg-brand-teal text-white font-body font-semibold hover:bg-brand-teal-dark transition-all shadow-none active:scale-95 text-sm sm:text-base"
                 >
                   Book a Free Assessment
-                </a>
+                </Link>
               </div>
 
               <div className="flex flex-col gap-2 sm:gap-3">

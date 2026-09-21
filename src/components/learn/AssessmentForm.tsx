@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
 import { User, Phone, Mail, Cake, ChevronDown, Loader2, ArrowRight, Check } from 'lucide-react';
 import { submitLead, fireLeadConversion } from '@/lib/leads';
+import { TurnstileField } from './TurnstileField';
 import { LiveWrite } from './primitives';
 
 interface FormState {
@@ -179,6 +180,10 @@ export const AssessmentForm: React.FC<AssessmentFormProps> = ({ instanceId, head
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
   const [marketingConsent, setMarketingConsent] = useState(false);
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  const [challengeNonce, setChallengeNonce] = useState(0);
+  // Honeypot. Hidden from parents, irresistible to form-filling scripts.
+  const [website, setWebsite] = useState('');
 
   const update = (key: keyof FormState, value: string) => {
     setForm((p) => ({ ...p, [key]: value }));
@@ -212,14 +217,27 @@ export const AssessmentForm: React.FC<AssessmentFormProps> = ({ instanceId, head
       parentEmail: form.parentEmail.trim(),
       childAge: parseInt(form.childAge, 10),
       marketingConsent,
+      turnstileToken,
+      honeypot: website,
     });
     setSubmitting(false);
     if (result.ok) {
       fireLeadConversion();
       setDone(true);
-    } else {
-      setErrors((p) => ({ ...p, submit: 'Something went wrong. Please try again, or message us on WhatsApp.' }));
+      return;
     }
+
+    // A Turnstile token is single use, so any failed attempt needs a fresh one.
+    setTurnstileToken(null);
+    setChallengeNonce((n) => n + 1);
+
+    const message =
+      result.error === 'bot-check'
+        ? 'We could not confirm you are a real person. Please try again, or message us on WhatsApp.'
+        : result.error === 'rate-limited'
+          ? 'That is a few too many tries from this connection. Please wait a little, or message us on WhatsApp.'
+          : 'Something went wrong. Please try again, or message us on WhatsApp.';
+    setErrors((p) => ({ ...p, submit: message }));
   };
 
   return (
@@ -315,6 +333,25 @@ export const AssessmentForm: React.FC<AssessmentFormProps> = ({ instanceId, head
                 Yes, DrTutor can contact me about my enquiry and use my details to measure our advertising. Optional, and you can opt out anytime.
               </span>
             </button>
+
+            {/* Honeypot. Off-screen and skipped by keyboard + screen readers, so
+                only a script that fills every input will ever put a value here. */}
+            <div aria-hidden="true" className="absolute -left-[9999px] top-0 h-0 w-0 overflow-hidden">
+              <label htmlFor={`${instanceId}-website`}>Website</label>
+              <input
+                id={`${instanceId}-website`}
+                name="website"
+                type="text"
+                tabIndex={-1}
+                autoComplete="off"
+                value={website}
+                onChange={(e) => setWebsite(e.target.value)}
+              />
+            </div>
+
+            <div className="mt-4">
+              <TurnstileField onToken={setTurnstileToken} resetSignal={challengeNonce} />
+            </div>
 
             <motion.button
               type="submit"

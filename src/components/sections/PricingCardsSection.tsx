@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import React, { useState, useMemo } from 'react';
 import { motion } from 'motion/react';
 import { Check } from 'lucide-react';
@@ -130,12 +131,7 @@ const PricingCard: React.FC<PricingCardProps> = ({ tier, price, delay }) => {
         </ul>
 
         {/* CTA */}
-        <a
-          href="https://platform.drtutor.uk/register"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="w-full"
-        >
+        <Link to="/learn" className="w-full">
           <Button
             variant={isPopular ? 'primary' : 'secondary'}
             size="lg"
@@ -143,7 +139,7 @@ const PricingCard: React.FC<PricingCardProps> = ({ tier, price, delay }) => {
           >
             Book a Free Assessment
           </Button>
-        </a>
+        </Link>
       </div>
     </motion.div>
   );

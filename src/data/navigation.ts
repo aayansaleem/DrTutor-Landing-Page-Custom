@@ -23,6 +23,6 @@ export const footerLinks = {
     { label: 'Contact', href: '/contact' },
     { label: 'Terms & Conditions', href: '/terms' },
     { label: 'Become a Tutor', href: 'https://platform.drtutor.uk/careers' },
-    { label: 'Book Free Assessment', href: 'https://platform.drtutor.uk/register' },
+    { label: 'Book Free Assessment', href: '/learn' },
   ],
 };
