@@ -77,6 +77,7 @@ const sections: Section[] = [
     ],
     items: [
       'Google LLC, for Google Analytics 4 (measurement ID G-29J2MTL3ZW) and Google Ads conversion tracking (account AW-17962620600). US-based. Transfers covered by the EU-US Data Privacy Framework and Standard Contractual Clauses.',
+      'Cloudflare, Inc., for the security check that runs on our forms (Cloudflare Turnstile). It reads signals from your browser to tell a person apart from an automated script. We do not send it your form answers, and it is not used for advertising or to build a profile of you. US-based, with Standard Contractual Clauses in place.',
       'Vercel Inc., the host for this marketing site. US-based, with EU data residency where supported, and Standard Contractual Clauses in place.',
       'DigitalOcean LLC, the host for our backend services and database. We use UK or EU regions wherever possible; otherwise Standard Contractual Clauses apply.',
       'Your assigned tutor, who receives the matched parent and child details they need to plan and deliver lessons: parent name, child age, and the learning need you described.',
@@ -122,7 +123,7 @@ const sections: Section[] = [
       'We use three categories:',
     ],
     items: [
-      'Strictly necessary: required for the site to function (e.g. remembering your cookie choice). Always on, no consent needed.',
+      'Strictly necessary: required for the site to function (e.g. remembering your cookie choice), and the Cloudflare Turnstile security check on our forms, which may store a short-lived token in your browser so it does not have to re-check you. Always on, no consent needed, and not used for advertising.',
       'Analytics: Google Analytics 4. Only loads if you accept.',
       'Marketing / ads: Google Ads conversion tracking. Only loads if you accept.',
     ],
@@ -140,6 +141,7 @@ const sections: Section[] = [
       'Encrypted at rest: the database storing your enquiry is encrypted.',
       'Least access: only the people who genuinely need to see your enquiry can see it (the team member matching tutors, and your assigned tutor).',
       'No payment data on this site: the free assessment costs nothing, so we do not take card details on /learn.',
+      'Bot protection: our forms run a Cloudflare Turnstile check plus a hidden trap field before anything is saved, so automated spam cannot flood the enquiry queue or submit fake bookings under a name that is not theirs.',
     ],
   },
   {
@@ -182,7 +184,7 @@ export const PrivacyPage: React.FC = () => {
             className="text-xs font-body font-semibold mb-4"
             style={{ color: 'var(--brand-teal)' }}
           >
-            Last Updated: 23 May 2026
+            Last Updated: 22 September 2026
           </p>
 
           {/* Intro paragraph */}
