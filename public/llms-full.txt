@@ -9,8 +9,8 @@
 - Subjects: Science (Biology, Chemistry, Physics), with additional support in English and Maths
 - Age Range: KS2 (ages 7–11), KS3 (ages 11–14), GCSE (ages 14–16), A-Level (ages 16–18), 11+ Preparation
 - Tutors: PGCE-qualified science specialists (some with QTS)
-- Delivery: Online one-to-one lessons via Zoom / Google Meet
-- Free Assessment: https://platform.drtutor.uk/register
+- Delivery: Online one-to-one lessons via Google Meet (no Google account needed)
+- Free Assessment: https://www.drtutor.uk/learn
 - Contact: https://www.drtutor.uk/contact
 
 ## Pages
@@ -21,7 +21,7 @@
 - [Contact](https://www.drtutor.uk/contact)
 - [Terms & Conditions](https://www.drtutor.uk/terms)
 - [Privacy Policy](https://www.drtutor.uk/privacy)
-- [Book Free Assessment](https://platform.drtutor.uk/register)
+- [Book Free Assessment](https://www.drtutor.uk/learn)
 - [Careers](https://platform.drtutor.uk/careers)
 
 ## What Makes Dr Tutor Different
@@ -60,7 +60,7 @@ All prices are per hour in GBP. Three tutor tiers are available across every key
 - Qualified UK Teacher (PGCE/QTS)
 - Structured Lesson Plans
 - Homework Support
-- Online Sessions (Zoom / Google Meet)
+- Online Sessions (Google Meet, no Google account needed)
 
 **Experienced** *(most popular)* — Enhanced learning with exam-board expertise.
 - Everything in Standard
@@ -174,11 +174,11 @@ Our platform is committed to helping students succeed and finding the "Perfect M
 
 Dr Tutor is the data controller (DRTUTOR LTD, registered in England No. 16076105). Full policy at https://www.drtutor.uk/privacy.
 
-- **What we collect.** Parent name, parent phone, parent email and child age via the free-assessment form on /learn. Anonymised analytics through Google Analytics 4 only with consent. Standard server logs (IP, user-agent, request paths) for security.
+- **What we collect.** Parent name, email and phone, plus the child's first name and subject, via the free-assessment form on /learn. Further details (the child's full name, date of birth, year group, school, subjects, exam boards and grades, optional access needs and optional email, username and password) are collected in the DrTutor platform (platform.drtutor.uk) when the parent sets up their account through the link emailed after booking. Anonymised analytics through Google Analytics 4 only with consent. Standard server logs (IP, user-agent, request paths) for security.
 - **Why.** To book the free 30-minute assessment, match a tutor, and follow up (UK GDPR Article 6(1)(b), pre-contractual measures). Marketing follow-up only with explicit consent (Article 6(1)(a), required by UK PECR). Analytics and ad-conversion cookies only with consent.
-- **Who else sees it.** Google (GA4 G-29J2MTL3ZW, Google Ads AW-17962620600, US, EU-US Data Privacy Framework + SCCs), Vercel (US hosting, SCCs), DigitalOcean (UK/EU backend hosting, SCCs where applicable), and the matched tutor (parent name, child age, learning need only).
-- **Retention.** Enquiries that did not convert: 12 months. Active customers: duration of service + 6 years (UK statutory retention for service contracts). GA4 data: 14 months. Server security logs: 90 days.
+- **Who else sees it.** Google (GA4 G-29J2MTL3ZW, Google Ads AW-17962620600, US, EU-US Data Privacy Framework + SCCs), Vercel (US hosting, SCCs), DigitalOcean (UK/EU backend hosting, SCCs where applicable), Google Meet (assessments and video lessons), and the child's assigned tutor (only what they need to teach; access needs only with the parent's explicit consent).
+- **Retention.** Enquiries that did not convert: 12 months. Active customers and child profiles: while tutoring is active + 6 years (UK statutory retention for service contracts); assessment reports the same. GA4 data: 14 months. Server security logs: 90 days.
 - **Your rights.** Access, rectification, erasure, restriction, portability, objection, withdraw consent, and the right to complain to the UK Information Commissioner's Office at ico.org.uk. Email contact@drtutor.uk to exercise any right; we respond within 30 days.
 - **Cookies.** Google Consent Mode v2 with all signals default-denied. Three categories: Strictly necessary (always on), Analytics (opt-in), Marketing/Ads (opt-in). Reject is as prominent as Accept in the banner.
-- **Children.** The assessment is booked by a parent or guardian. We do not knowingly collect data directly from anyone under 13. The child's age is provided by the parent for tutor matching.
+- **Children.** The assessment is booked by a parent or guardian. Children use accounts set up and controlled by their parent, who picks the username and can view or reset the password. The parent ticks a consent box stating what is held and why; access needs (possible special category data) rely on explicit consent under UK GDPR Article 9(2)(a). No photo, address or phone number is held for a child, and children are never marketed to.
 - **Contact.** contact@drtutor.uk for any privacy-related question or data-rights request.

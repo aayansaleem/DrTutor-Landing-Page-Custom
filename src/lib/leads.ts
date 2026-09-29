@@ -4,7 +4,8 @@
  * BACKEND STATUS (2026-06-02): LIVE. Leads POST to the DrTutor Workspace Django
  * endpoint https://api.drtutor.uk/api/v1/assessment-bookings/quick/ (public,
  * rate-limited), which persists an AssessmentBooking (source `learn-ads`) and
- * returns { reference_number }. The endpoint defaults on in production builds;
+ * returns { reference_number }. Since 2026-09-28 the form sends five details:
+ * parent name, email, phone, child_first_name and subject (a lookups code). The endpoint defaults on in production builds;
  * set VITE_LEAD_ENDPOINT to override. In local dev with no override, submitLead
  * stays in STUB mode (simulated success, no network) so dev never posts to prod.
  *
@@ -30,13 +31,26 @@ const _env = (import.meta as unknown as {
 const LEAD_ENDPOINT: string | undefined =
   _env?.VITE_LEAD_ENDPOINT || (_env?.PROD ? PROD_LEAD_ENDPOINT : undefined);
 
+/** Origin of the backend behind the lead endpoint (for the subjects list),
+ *  or undefined in dev stub mode. */
+export function leadApiOrigin(): string | undefined {
+  if (!LEAD_ENDPOINT) return undefined;
+  try {
+    return new URL(LEAD_ENDPOINT).origin;
+  } catch {
+    return undefined;
+  }
+}
+
 const ATTRIBUTION_KEY = 'dt_learn_attribution';
 
 export interface LeadInput {
   parentName: string;
   parentPhone: string;
   parentEmail: string;
-  childAge: number;
+  childFirstName: string;
+  /** Subject code from the platform lookups list (for example `maths`). */
+  subject: string;
   /** Affirmative opt-in to be contacted + to use details for ad measurement.
    *  Gates the server-side Google Ads conversion upload (UK GDPR / PECR). */
   marketingConsent: boolean;
@@ -125,7 +139,8 @@ export async function submitLead(input: LeadInput): Promise<LeadResult> {
     parent_name: input.parentName,
     parent_phone: input.parentPhone,
     parent_email: input.parentEmail,
-    child_age: input.childAge,
+    child_first_name: input.childFirstName,
+    subject: input.subject,
     marketing_consent: input.marketingConsent,
     source: fromAd ? 'learn-ads' : 'short-form',
     website: input.honeypot ?? '',

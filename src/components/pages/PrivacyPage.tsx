@@ -30,7 +30,7 @@ const webPageSchema = {
     legalName: 'DRTUTOR LTD',
     url: 'https://www.drtutor.uk',
   },
-  dateModified: '2026-05-23',
+  dateModified: '2026-09-28',
 };
 
 interface Section {
@@ -53,7 +53,8 @@ const sections: Section[] = [
       'We try to collect as little as possible, and only what we actually need to help your child learn. The categories are:',
     ],
     items: [
-      'Parent details you give us through the assessment form on /learn: your name, phone number, email address, and your child\'s age.',
+      'Details you give us through the assessment form on /learn: your name, email address and phone number, plus your child\'s first name and the subject you would like help with.',
+      'Details you add when you set up your account in the DrTutor platform (platform.drtutor.uk) using the link we email after booking: your password and, for each child, the details listed in section 9.',
       'Anonymised analytics through Google Analytics 4, but only after you accept cookies. This includes things like which pages you visited and roughly where in the UK you are.',
       'Standard server logs kept by our hosting providers (IP address, browser type, the page you requested, the time of the request). These are used for security and to keep the site running.',
     ],
@@ -64,7 +65,9 @@ const sections: Section[] = [
       'Under UK GDPR we have to tell you the "lawful basis" for each thing we do with your data. Ours are:',
     ],
     items: [
-      'Form submissions on /learn (name, phone, email, child age): we use these to book your free 30-minute assessment, match a tutor, and follow up about the assessment. Lawful basis: Article 6(1)(b), pre-contractual steps taken at your request.',
+      'Form submissions on /learn (your name, email, phone, your child\'s first name and subject): we use these to arrange your free 30-minute assessment, email you the time, the Google Meet link and your account set-up link, and follow up about the assessment. Lawful basis: Article 6(1)(b), pre-contractual steps taken at your request.',
+      'Your child\'s profile (see section 9): we use it to provide the tutoring you asked for. Lawful basis: Article 6(1)(b), our contract with you.',
+      'Access needs, which can include health or special educational needs information (special category data): used only so lessons suit your child. Lawful basis: Article 9(2)(a), your explicit consent, given with the consent tick when you add your child. The field is optional and you can change or remove it at any time.',
       'Marketing follow-up beyond the assessment booking itself: only if you opt in. Lawful basis: Article 6(1)(a), your explicit consent. You can withdraw at any time by replying "unsubscribe" or emailing contact@drtutor.uk.',
       'Analytics and ad-conversion cookies: only if you accept them in the cookies banner. Lawful basis: Article 6(1)(a), your consent. UK PECR also requires this consent for any non-essential cookies.',
       'Server security logs: lawful basis Article 6(1)(f), our legitimate interest in keeping the site available and safe from abuse.',
@@ -80,7 +83,8 @@ const sections: Section[] = [
       'Cloudflare, Inc., for the security check that runs on our forms (Cloudflare Turnstile). It reads signals from your browser to tell a person apart from an automated script. We do not send it your form answers, and it is not used for advertising or to build a profile of you. US-based, with Standard Contractual Clauses in place.',
       'Vercel Inc., the host for this marketing site. US-based, with EU data residency where supported, and Standard Contractual Clauses in place.',
       'DigitalOcean LLC, the host for our backend services and database. We use UK or EU regions wherever possible; otherwise Standard Contractual Clauses apply.',
-      'Your assigned tutor, who receives the matched parent and child details they need to plan and deliver lessons: parent name, child age, and the learning need you described.',
+      'Google LLC, for Google Meet, which we use for the free assessment and for video lessons. Your child joins with the link we give you and does not need a Google account.',
+      'Your child\'s assigned tutor, who sees the details they need to plan and deliver lessons: your name, your child\'s name, year group, school, subjects and grades, and any access needs you chose to share. Access needs are shown only to our team and your child\'s assigned tutors.',
       'We do not send marketing email to anyone who has not first given explicit consent (PECR rule). Our outreach workflow is set out internally at docs/outreach/LEGAL-GDPR-PECR.md and the rule is the same in every case: consent first, email second.',
     ],
   },
@@ -94,7 +98,8 @@ const sections: Section[] = [
     title: '6. How long we keep it',
     items: [
       'Enquiries that did not turn into lessons: 12 months from your form submission, then deleted.',
-      'Active customer records: for as long as you are a customer, plus 6 years after the last lesson, which is the UK statutory retention period for service contracts.',
+      'Active customer records, including your child\'s profile: for as long as tutoring is active, plus 6 years after the last lesson, which is the UK statutory retention period for service contracts. Then deleted.',
+      'Assessment reports: kept for the same period as your child\'s profile, then deleted.',
       'Google Analytics data: 14 months (the GA4 default), then automatically deleted.',
       'Server security logs: 90 days.',
     ],
@@ -131,7 +136,19 @@ const sections: Section[] = [
   {
     title: '9. Children',
     paragraphs: [
-      'Our service is bought by parents or guardians on behalf of a child. The assessment form is filled in by an adult and the only thing we ask about the child is their age, which we need to match the right tutor. We do not knowingly collect data directly from anyone under 13. If you think a child has used the site without a parent\'s knowledge, please email contact@drtutor.uk and we will remove the information.',
+      'Our service is bought by parents or guardians on behalf of a child. The booking form on this site is filled in by an adult and asks only for your child\'s first name and a subject. Everything else about your child is collected later, in the DrTutor platform (platform.drtutor.uk), when you set up your account through the link we email you after booking.',
+      'Children use accounts that are set up and controlled by their parent. You choose your child\'s username, you can see and reset their password from your dashboard, and you can ask us to change or delete their details at any time. Child profiles are never public, we do not profile children, and we never send marketing to children.',
+      'When you add your child, we show you exactly what we hold and why, and ask you to tick a consent box. We record who gave consent, when, and which wording was shown. What we hold, and why:',
+    ],
+    items: [
+      'Full name, date of birth, year group and school: to match the right level, tutor and exam content.',
+      'Subjects, exam board, current and target grades: to plan lessons and measure progress.',
+      'Access needs (optional): so lessons suit your child. Only share what helps us teach. This can be special category data, so we rely on your explicit consent (Article 9(2)(a)).',
+      'Your child\'s email (optional): only if you want lesson reminders sent to your child.',
+      'Username and password: so your child can sign in to their own portal.',
+      'Assessment report: to show where your child is now and the plan ahead.',
+      'We do not ask for a photo, address or phone number for your child.',
+      'If you think a child has sent us their details without a parent\'s knowledge, please email contact@drtutor.uk and we will remove them.',
     ],
   },
   {
@@ -141,6 +158,7 @@ const sections: Section[] = [
       'Encrypted at rest: the database storing your enquiry is encrypted.',
       'Least access: only the people who genuinely need to see your enquiry can see it (the team member matching tutors, and your assigned tutor).',
       'No payment data on this site: the free assessment costs nothing, so we do not take card details on /learn.',
+      'Child passwords: we keep an encrypted copy of the password we create for your child so you can see it on your dashboard. Only you, and our team if you ask us for help, can reveal it, and every view is logged. If your child chooses their own password, we delete the copy and can no longer show it.',
       'Bot protection: our forms run a Cloudflare Turnstile check plus a hidden trap field before anything is saved, so automated spam cannot flood the enquiry queue or submit fake bookings under a name that is not theirs.',
     ],
   },
@@ -184,7 +202,7 @@ export const PrivacyPage: React.FC = () => {
             className="text-xs font-body font-semibold mb-4"
             style={{ color: 'var(--brand-teal)' }}
           >
-            Last Updated: 22 September 2026
+            Last Updated: 28 September 2026
           </p>
 
           {/* Intro paragraph */}
@@ -192,8 +210,8 @@ export const PrivacyPage: React.FC = () => {
             className="text-sm font-body leading-relaxed mb-8"
             style={{ color: 'var(--text-primary)' }}
           >
-            This policy explains, in plain English, what data we collect when you visit drtutor.uk
-            or book a free assessment, why we collect it, who we share it with, and the rights you
+            This policy explains, in plain English, what data we collect when you visit drtutor.uk,
+            book a free assessment or set up your account, why we collect it, who we share it with, and the rights you
             have under the UK GDPR and the Privacy and Electronic Communications Regulations
             (PECR). If anything below is unclear, please email contact@drtutor.uk and we will
             walk you through it.

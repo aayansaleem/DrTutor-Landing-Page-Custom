@@ -34,7 +34,7 @@ const sections = [
     items: [
       'Lessons are fully online and can be accessed from anywhere.',
       'You can choose a time that works for you, with sessions available after school or on weekends.',
-      'The process involves finding a tutor and booking an assessment or lesson via the website.',
+      'The process involves booking a free assessment via the website, then setting up your parent account and your child\'s profile through the link we email you, and booking lessons from there.',
     ],
   },
   {

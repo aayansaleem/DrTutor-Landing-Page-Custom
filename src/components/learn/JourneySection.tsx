@@ -27,7 +27,7 @@ export const JourneySection: React.FC = () => {
             How it works, step by step
           </h2>
           <p className="font-body text-sm sm:text-base text-brand-navy/65 leading-relaxed">
-            Three quick steps from booking to a clear plan for your child.
+            Three quick steps: book, get your time and set up your account, then the assessment and your report.
           </p>
         </Reveal>
 

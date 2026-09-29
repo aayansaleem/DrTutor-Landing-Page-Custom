@@ -6,7 +6,7 @@
 
 ## What this is
 
-The public marketing site. A React 19 + Vite + Tailwind v4 SPA. Five routes (`/`, `/pricing`, `/resources`, `/contact`, `/terms`). The product itself is a **separate app** at `../DrTutor Platform/` — links like "Book a Free Assessment" and "Become a Tutor" send users to `https://platform.drtutor.uk/{register,careers}`, never to a route inside this repo. Do not invent routes for those flows here.
+The public marketing site. A React 19 + Vite + Tailwind v4 SPA. Five routes (`/`, `/pricing`, `/resources`, `/contact`, `/terms`). The product itself is a **separate app** at `../DrTutor Platform/`. "Book a Free Assessment" buttons go to `/learn` (the only booking form, which posts to the platform API), and "Become a Tutor" goes to `https://platform.drtutor.uk/careers`. `platform.drtutor.uk/register` and `/apply` are retired and redirect to `/learn#book`. Do not invent routes for those flows here.
 
 External URLs are centralised in `src/data/navigation.ts`. If a Platform path moves, update there first.
 

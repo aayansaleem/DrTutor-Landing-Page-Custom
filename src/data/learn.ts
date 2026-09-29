@@ -18,20 +18,20 @@ export const journey: JourneyStep[] = [
   {
     number: '01',
     label: 'Book',
-    title: 'Four details, under a minute',
-    detail: "Your name, phone, email, and your child's age. No card, no account. Done before the kettle boils.",
+    title: 'Five details, under a minute',
+    detail: "Your name, email and phone, plus your child's first name and the subject. No card needed. Done before the kettle boils.",
   },
   {
     number: '02',
-    label: 'Meet',
-    title: 'A free 30-minute assessment',
-    detail: "An experienced academic manager meets your child on Zoom or Google Meet, and pinpoints the exact gaps holding them back.",
+    label: 'Set up',
+    title: 'Your time, your link, your account',
+    detail: "We email your assessment time, a Google Meet link (no Google account needed) and a link to set up your account and add your child.",
   },
   {
     number: '03',
-    label: 'Plan',
-    title: 'A clear plan you can act on',
-    detail: "A short written report with strengths, the gaps to close, and the recommended hours to reach your child's target grade.",
+    label: 'Meet and plan',
+    title: 'A free assessment, then a clear plan',
+    detail: "A PGCE-qualified tutor meets your child on Google Meet for 30 minutes and pinpoints the gaps. Your written report follows in your account, with the recommended hours to reach the target grade.",
   },
 ];
 
@@ -75,7 +75,7 @@ export const learnFaqs: LearnFaq[] = [
   {
     id: 'how-online',
     question: 'How do the online lessons work?',
-    answer: 'Everything runs 1:1 on Zoom or Google Meet, so your child learns from home at a time that fits around school and family life.',
+    answer: 'Everything runs 1:1 on Google Meet (no Google account needed), so your child learns from home at a time that fits around school and family life.',
   },
 ];
 
@@ -83,5 +83,5 @@ export const learnFaqs: LearnFaq[] = [
 export const trustSignals: string[] = [
   'PGCE-qualified UK teachers',
   'Curriculum-aligned: AQA, Edexcel, OCR',
-  '1:1 online on Zoom and Google Meet',
+  '1:1 online on Google Meet (no Google account needed)',
 ];

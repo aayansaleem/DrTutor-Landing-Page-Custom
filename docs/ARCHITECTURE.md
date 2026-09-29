@@ -22,7 +22,7 @@ Some links on this site point **outside** to the Platform. They are real cross-o
 
 | User clicks | Goes to | Lives in |
 |---|---|---|
-| "Book a Free Assessment" (hero, navbar, CTA, pricing, resources) | `https://platform.drtutor.uk/register` | `../DrTutor Platform/pages/RegisterPage.tsx` |
+| "Book a Free Assessment" (hero, navbar, CTA, pricing, resources) | `/learn` (inline five-field form) | `src/components/learn/AssessmentForm.tsx` (the platform's old `/register` and `/apply` now redirect here) |
 | "Become a Tutor" (navbar, footer) | `https://platform.drtutor.uk/careers` | `../DrTutor Platform/pages/CareersPage.tsx` |
 
 All other navigation stays inside this app via React Router.
@@ -65,7 +65,7 @@ Wired in `src/App.tsx`. Routes are lazy-loaded (one chunk each). Hash-anchored d
 `/learn` is the **single-goal Google Ads landing page** and breaks the usual pattern deliberately:
 
 - **No site chrome.** `App.tsx` detects `pathname === '/learn'` and renders a bare shell — no global `Navbar`, `Footer`, or floating `WhatsAppButton`. The page ships its own minimal glass header + footer (`src/components/learn/`). One goal: book the free assessment. The logo is not a link away.
-- **Lead delivery is in-repo, not an external link.** Unlike "Book a Free Assessment" elsewhere (which links to `platform.drtutor.uk/register`), `/learn` has the booking form **inline** and submits via `src/lib/leads.ts` → `submitLead()`. Firebase was retired (2026-05-22); until the Django endpoint is set in `VITE_LEAD_ENDPOINT`, the form runs in **stub mode** (no lead persisted). Do not run paid ads until that endpoint is wired.
+- **Lead delivery is in-repo, not an external link.** `/learn` has the booking form **inline** and submits via `src/lib/leads.ts` → `submitLead()` to `https://api.drtutor.uk/api/v1/assessment-bookings/quick/` (production default; override with `VITE_LEAD_ENDPOINT`, for example `http://127.0.0.1:8001/api/v1/assessment-bookings/quick/` locally; with no override in dev the form runs in **stub mode** and nothing is persisted). Since 2026-09-28 it sends five details: parent name, email, phone, `child_first_name` and `subject` (a lookups code). The subject list loads from `{same origin}/api/v1/lookups/subjects/` via `src/lib/subjects.ts`, with a built-in fallback. After booking, the admin emails the parent their assessment time, Google Meet link and an account set-up link (the onboarding flow lives in the platform).
 - **Tracking.** `fireLeadConversion()` pushes GA4 `generate_lead` on submit success (once per submission) and holds a stubbed Google Ads conversion tag (`ADS_CONVERSION_SEND_TO`) for the ads team's `AW-…/label`. `gclid`/UTM are captured into the lead payload for offline conversion import.
 - **Design.** Cinematic aurora + glass system in `src/components/learn/` (`AuroraBackground`, `primitives.tsx`), 3D icons in `src/assets/icons3d/`. Brief: `Google Ads/docs/handoffs/HANDOFF-LEARN-PAGE.md`.
 

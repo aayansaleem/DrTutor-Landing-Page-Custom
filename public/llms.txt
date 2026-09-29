@@ -9,9 +9,9 @@
 - Subjects: Science (Biology, Chemistry, Physics), with additional support in English and Maths
 - Age Range: KS2 (ages 7–11), KS3 (ages 11–14), GCSE (ages 14–16), A-Level (ages 16–18), 11+ Preparation
 - Tutors: All PGCE-qualified science specialists
-- Delivery: Online one-to-one lessons via Zoom / Google Meet
+- Delivery: Online one-to-one lessons via Google Meet (no Google account needed)
 - Teaching Framework: Doug Lemov's "Teach Like a Champion", delivered through a structured I Do → We Do → You Do cycle
-- Free Assessment: https://platform.drtutor.uk/register
+- Free Assessment: https://www.drtutor.uk/learn
 - Contact: https://www.drtutor.uk/contact
 
 ## Pages
@@ -22,7 +22,7 @@
 - [Contact](https://www.drtutor.uk/contact): Get in touch via form, email, or WhatsApp; book a free assessment
 - [Terms & Conditions](https://www.drtutor.uk/terms): Service agreement and cancellation terms
 - [Privacy Policy](https://www.drtutor.uk/privacy): What personal data Dr Tutor collects, why, retention, your UK GDPR rights, and cookies
-- [Book Free Assessment](https://platform.drtutor.uk/register): Registration page to book a free initial assessment
+- [Book Free Assessment](https://www.drtutor.uk/learn): Five-detail form to book a free 30-minute assessment; the time, Google Meet link and account set-up link follow by email
 - [Careers](https://platform.drtutor.uk/careers): Join the Dr Tutor team as a tutor
 
 ## What Makes Dr Tutor Different

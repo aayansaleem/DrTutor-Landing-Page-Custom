@@ -4,6 +4,22 @@ Running record of meaningful changes to the marketing site (`drtutor.uk`). Newes
 
 ---
 
+## 2026-09-28: Five-field booking form and onboarding copy
+
+The /learn booking form now matches the new platform onboarding flow (free assessment, emailed time and Google Meet link, parent sets up the account through one emailed link). Not yet deployed: ship after the platform backend accepts the new payload.
+
+### Changed
+
+- `src/components/learn/AssessmentForm.tsx`: child age dropdown removed. Fields are now parent name, email, phone, child's first name and a Subject listbox (same custom pattern, arrow keys, Home, End, Enter, Escape). New success copy and footnote. Turnstile, honeypot, marketing consent tick, GA4 and Ads conversion unchanged.
+- `src/lib/subjects.ts` (new): loads subjects once per page from `{api origin}/api/v1/lookups/subjects/` (plain array), with a built-in fallback. The form sends the subject code.
+- `src/lib/leads.ts`: payload sends `child_first_name` and `subject`, drops `child_age`. New `leadApiOrigin()` so `VITE_LEAD_ENDPOINT` also points the subjects list at a local backend.
+- Copy: FormSection, journey steps in `src/data/learn.ts` (book, get your time and set up your account, assessment and report), JourneySection intro, FAQ and trust strip now say Google Meet (no Google account needed), pricing features, TermsPage process line. One term for who runs the assessment: PGCE-qualified tutor.
+- `src/components/pages/PrivacyPage.tsx`: children's section rewritten (what we hold and why, collected in the platform after booking, parent-controlled child accounts, Art 9(2)(a) explicit consent for access needs, Google Meet as processor, retention while tutoring is active plus 6 years, reports the same). Last updated and `dateModified` both 28 September 2026.
+- `public/llms.txt`, `public/llms-full.txt`, `public/.well-known/ai-plugin.json`: booking link is now `https://www.drtutor.uk/learn`; data collected and children summary updated.
+- `CLAUDE.md`, `docs/ARCHITECTURE.md`: booking links point at `/learn`.
+
+---
+
 ## 2026-05-23 — Standalone /privacy page + GDPR/PECR cookies banner update
 
 Split the privacy story out of `/terms` and into its own page, and brought the cookies banner up to PECR-compliant Accept/Reject parity. Commit `669a7d5`.

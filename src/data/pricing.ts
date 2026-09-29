@@ -37,7 +37,7 @@ export const tierDetails: PricingTier[] = [
       'Qualified UK Teacher (PGCE/QTS)',
       'Structured Lesson Plans',
       'Homework Support',
-      'Online Sessions (Zoom/Google Meet)',
+      'Online Sessions (Google Meet, no Google account needed)',
     ],
   },
   {

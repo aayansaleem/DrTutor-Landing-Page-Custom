@@ -18,7 +18,7 @@ export const FormSection: React.FC = () => {
             Book your child's free assessment
           </h2>
           <p className="font-body text-sm sm:text-base text-brand-navy/65 leading-relaxed mb-8">
-            Four quick details and we'll be in touch to arrange a time. It really is that simple.
+            Five quick details. We'll email your assessment time and Meet link.
           </p>
         </Reveal>
         <Reveal delay={0.12}>
