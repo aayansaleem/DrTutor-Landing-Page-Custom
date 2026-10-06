@@ -4,6 +4,11 @@ Running record of meaningful changes to the marketing site (`drtutor.uk`). Newes
 
 ---
 
+## 2026-10-06: Level and year group on the booking form
+
+- `/learn` form gains two required dropdowns, Level (KS2, KS3, GCSE, A-Level) and Year group, side by side above Subject. Year options follow the level; picking a year fills the level in.
+- `src/lib/levels.ts` holds the codes (platform lookups `ks2` to `ks5`, `year-3` to `year-13`). `submitLead` sends `key_stage` and `year_group`; the platform now requires both on new payloads, so deploy this alongside the backend.
+
 ## 2026-09-28: Five-field booking form and onboarding copy
 
 The /learn booking form now matches the new platform onboarding flow (free assessment, emailed time and Google Meet link, parent sets up the account through one emailed link). Not yet deployed: ship after the platform backend accepts the new payload.

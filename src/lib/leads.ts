@@ -5,7 +5,8 @@
  * endpoint https://api.drtutor.uk/api/v1/assessment-bookings/quick/ (public,
  * rate-limited), which persists an AssessmentBooking (source `learn-ads`) and
  * returns { reference_number }. Since 2026-09-28 the form sends five details:
- * parent name, email, phone, child_first_name and subject (a lookups code). The endpoint defaults on in production builds;
+ * parent name, email, phone, child_first_name and subject (a lookups code); since
+ * 2026-10-06 it also sends key_stage and year_group (lookups codes, required). The endpoint defaults on in production builds;
  * set VITE_LEAD_ENDPOINT to override. In local dev with no override, submitLead
  * stays in STUB mode (simulated success, no network) so dev never posts to prod.
  *
@@ -51,6 +52,10 @@ export interface LeadInput {
   childFirstName: string;
   /** Subject code from the platform lookups list (for example `maths`). */
   subject: string;
+  /** Level, as a platform key stage code (`ks2`, `ks3`, `ks4` for GCSE, `ks5` for A-Level). */
+  keyStage: string;
+  /** Year group, as a platform code (for example `year-10`). Must fit the level. */
+  yearGroup: string;
   /** Affirmative opt-in to be contacted + to use details for ad measurement.
    *  Gates the server-side Google Ads conversion upload (UK GDPR / PECR). */
   marketingConsent: boolean;
@@ -141,6 +146,8 @@ export async function submitLead(input: LeadInput): Promise<LeadResult> {
     parent_email: input.parentEmail,
     child_first_name: input.childFirstName,
     subject: input.subject,
+    key_stage: input.keyStage,
+    year_group: input.yearGroup,
     marketing_consent: input.marketingConsent,
     source: fromAd ? 'learn-ads' : 'short-form',
     website: input.honeypot ?? '',

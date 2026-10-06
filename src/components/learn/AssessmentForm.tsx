@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
-import { User, Phone, Mail, Smile, BookOpen, ChevronDown, Loader2, ArrowRight, Check } from 'lucide-react';
+import { User, Phone, Mail, Smile, BookOpen, ChevronDown, Loader2, ArrowRight, Check, GraduationCap, CalendarDays } from 'lucide-react';
 import { submitLead, fireLeadConversion } from '@/lib/leads';
 import { FALLBACK_SUBJECTS, loadSubjects, type SubjectOption } from '@/lib/subjects';
+import { LEVELS, levelForYear, yearOptionsFor } from '@/lib/levels';
 import { TurnstileField } from './TurnstileField';
 import { LiveWrite } from './primitives';
 
@@ -12,8 +13,10 @@ interface FormState {
   parentEmail: string;
   childFirstName: string;
   subject: string;
+  keyStage: string;
+  yearGroup: string;
 }
-const empty: FormState = { parentName: '', parentPhone: '', parentEmail: '', childFirstName: '', subject: '' };
+const empty: FormState = { parentName: '', parentPhone: '', parentEmail: '', childFirstName: '', subject: '', keyStage: '', yearGroup: '' };
 
 interface FieldRowProps {
   id: string;
@@ -89,31 +92,35 @@ const FieldRow: React.FC<FieldRowProps> = ({ id, label, type, value, placeholder
 
 const TYPEAHEAD_RESET_MS = 600;
 
-/** Custom listbox, never a raw native <select>. Follows the WAI-ARIA
+/** Custom listbox, never a raw native <select>. Used for subject, level and year group. Follows the WAI-ARIA
  *  select-only combobox pattern: focus stays on the button, the highlighted
  *  option is announced through aria-activedescendant. Keyboard: arrows, Home,
  *  End, Enter or Space to choose, Escape or Tab to close, and type-ahead (type
  *  "ch" to jump to Chemistry). Pointer events, so taps work on phones.
  *  Subjects come from the platform lookups list (see lib/subjects.ts); while it
  *  loads the built-in list is usable straight away. */
-const SubjectDropdown: React.FC<{
+const OptionDropdown: React.FC<{
+  field: string;
+  label: string;
+  placeholder: string;
+  icon: React.ReactNode;
   value: string;
   options: SubjectOption[];
-  loading: boolean;
+  loading?: boolean;
   error?: string;
   disabled?: boolean;
   onChange: (v: string) => void;
   instanceId: string;
-}> = ({ value, options, loading, error, disabled, onChange, instanceId }) => {
+}> = ({ field, label, placeholder, icon, value, options, loading = false, error, disabled, onChange, instanceId }) => {
   const [open, setOpen] = useState(false);
   const [focused, setFocused] = useState(false);
   const [active, setActive] = useState(0);
   const wrap = useRef<HTMLDivElement>(null);
   const typed = useRef({ text: '', at: 0 });
-  const buttonId = `subject-btn-${instanceId}`;
-  const labelId = `subject-label-${instanceId}`;
-  const listId = `subject-list-${instanceId}`;
-  const errorId = `subject-${instanceId}-err`;
+  const buttonId = `${field}-btn-${instanceId}`;
+  const labelId = `${field}-label-${instanceId}`;
+  const listId = `${field}-list-${instanceId}`;
+  const errorId = `${field}-${instanceId}-err`;
   const selected = options.find((o) => o.code === value);
 
   // close on an outside tap or click
@@ -212,7 +219,7 @@ const SubjectDropdown: React.FC<{
 
   return (
     <div>
-      <label id={labelId} htmlFor={buttonId} className="block font-body font-semibold text-xs text-brand-navy/65 mb-1.5">Subject</label>
+      <label id={labelId} htmlFor={buttonId} className="block font-body font-semibold text-xs text-brand-navy/65 mb-1.5">{label}</label>
       <div ref={wrap} className="relative">
         <button
           id={buttonId}
@@ -235,10 +242,10 @@ const SubjectDropdown: React.FC<{
           style={shellStyle(Boolean(error), focused || open)}
         >
           <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-brand-teal/70 pointer-events-none">
-            <BookOpen size={17} />
+            {icon}
           </span>
           <span className={`truncate ${selected ? '' : 'text-brand-navy/40'}`}>
-            {selected ? selected.name : 'Choose a subject'}
+            {selected ? selected.name : placeholder}
           </span>
           <span className="flex-shrink-0 text-brand-navy/50" aria-hidden="true">
             {loading ? (
@@ -250,7 +257,7 @@ const SubjectDropdown: React.FC<{
             )}
           </span>
         </button>
-        {loading && <span className="sr-only" role="status">Loading subjects</span>}
+        {loading && <span className="sr-only" role="status">Loading options</span>}
         <AnimatePresence>
           {open && (
             <motion.ul
@@ -347,6 +354,19 @@ export const AssessmentForm: React.FC<AssessmentFormProps> = ({ instanceId, head
     });
   };
 
+  /** A new level clears a year group that no longer fits it. */
+  const chooseLevel = (level: string) => {
+    update('keyStage', level);
+    if (form.yearGroup && levelForYear(form.yearGroup) !== level) update('yearGroup', '');
+  };
+
+  /** Picking a year first fills in the level it belongs to. */
+  const chooseYear = (year: string) => {
+    update('yearGroup', year);
+    const level = levelForYear(year);
+    if (level && level !== form.keyStage) update('keyStage', level);
+  };
+
   const validate = (): boolean => {
     const e: Partial<Record<keyof FormState, string>> = {};
     if (!form.parentName.trim()) e.parentName = 'Please enter your name';
@@ -355,6 +375,8 @@ export const AssessmentForm: React.FC<AssessmentFormProps> = ({ instanceId, head
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.parentEmail)) e.parentEmail = 'That email looks off';
     if (!form.childFirstName.trim()) e.childFirstName = "Please enter your child's first name";
     if (!form.subject) e.subject = 'Please choose a subject';
+    if (!form.keyStage) e.keyStage = "Please choose your child's level";
+    if (!form.yearGroup) e.yearGroup = 'Please choose a year group';
     setErrors(e);
     return Object.keys(e).length === 0;
   };
@@ -370,6 +392,8 @@ export const AssessmentForm: React.FC<AssessmentFormProps> = ({ instanceId, head
       parentEmail: form.parentEmail.trim(),
       childFirstName: form.childFirstName.trim(),
       subject: form.subject,
+      keyStage: form.keyStage,
+      yearGroup: form.yearGroup,
       marketingConsent,
       turnstileToken,
       honeypot: website,
@@ -453,7 +477,11 @@ export const AssessmentForm: React.FC<AssessmentFormProps> = ({ instanceId, head
               <FieldRow id={`parentEmail-${instanceId}`} label="Email address" type="email" placeholder="sarah@example.com" inputMode="email" autoComplete="email" autoCapitalize="off" maxLength={254} value={form.parentEmail} icon={<Mail size={17} />} error={errors.parentEmail} disabled={submitting} onChange={(v) => update('parentEmail', v)} />
               <FieldRow id={`parentPhone-${instanceId}`} label="Phone number" type="tel" placeholder="07700 900000" inputMode="tel" autoComplete="tel" maxLength={32} value={form.parentPhone} icon={<Phone size={17} />} error={errors.parentPhone} disabled={submitting} onChange={(v) => update('parentPhone', v)} />
               <FieldRow id={`childFirstName-${instanceId}`} label="Child's first name" type="text" placeholder="e.g. Amelia" autoComplete="off" autoCapitalize="words" maxLength={80} value={form.childFirstName} icon={<Smile size={17} />} error={errors.childFirstName} disabled={submitting} onChange={(v) => update('childFirstName', v)} />
-              <SubjectDropdown value={form.subject} options={subjects} loading={subjectsLoading} error={errors.subject} disabled={submitting} onChange={(v) => update('subject', v)} instanceId={instanceId} />
+              <div className="grid grid-cols-2 gap-3">
+                <OptionDropdown field="keyStage" label="Level" placeholder="Choose level" icon={<GraduationCap size={17} />} value={form.keyStage} options={LEVELS} error={errors.keyStage} disabled={submitting} onChange={chooseLevel} instanceId={instanceId} />
+                <OptionDropdown field="yearGroup" label="Year group" placeholder="Choose year" icon={<CalendarDays size={17} />} value={form.yearGroup} options={yearOptionsFor(form.keyStage)} error={errors.yearGroup} disabled={submitting} onChange={chooseYear} instanceId={instanceId} />
+              </div>
+              <OptionDropdown field="subject" label="Subject" placeholder="Choose a subject" icon={<BookOpen size={17} />} value={form.subject} options={subjects} loading={subjectsLoading} error={errors.subject} disabled={submitting} onChange={(v) => update('subject', v)} instanceId={instanceId} />
             </div>
 
             {errors.submit && (
